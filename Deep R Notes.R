@@ -36,4 +36,52 @@ sample(1:10, 10, replace= T)
 
 ### Reading data with scan()
 scan(paste0("https://github.com/gagolews/teaching-data/raw/",
-            "master/marek/euraud-20200101-20200630.csv"), comment.char = "#")
+            "master/marek/euraud-20200101-20200630.csv"), comment.char = "#") # from URL
+scan("~/Svaštara/Osnove proračuna/yield-curve-rates-1990-2021_treasury.csv", comment.char= "#") # ~ is for home directory
+getwd() # C:/Users/Studenti/Downloads
+setwd() # Platform specific variables
+help(".Platform")# Specific info
+help("scan") # Exercise
+
+plot(scan(paste0("https://github.com/gagolews/teaching-data/raw/",
+                 "master/marek/euraud-20200101-20200630.csv"), comment.char = "#"), xlab= "Day", ylab= "EUR/AUD")
+
+### Vectorised mathematical functions
+#### abs () and sqrt()
+abs(c(2,1,0,-6, NA_real_, Inf)) #2   1   0   6  NA Inf
+sqrt(c(2,23456,4,23,67,13, NA_real_, Inf)) # 1.414214 153.153518 2.000000 4.795832 8.185353 3.605551 NA Inf
+print(sqrt(12974), digits= 18) # 113.903467901552503
+
+#### Rounding
+
+floor(c(7.2348, 9.1032841897, 8924.13598)) # 7 9 8924; zaokružuje na najbliži broj
+ceiling(c(7.2348, 9.1032841897, 8924.13598)) # 8 10 8925; ide na veći broj
+trunc(c(7.2348, 9.1032841897, 8924.13598)) # 7 9 8924; ide na manji broj
+round(c(7.2348, 9.1032841897, 8924.13598)) # 7  9 8924; zaokružuje na broj, bez decimala
+
+#### Natural exponential function and logarithm
+exp(10) # 2.718
+log(12)
+log(12, base = exp(1)) # same as log(12); str. 25 za pravila logaritmiranja
+
+x= seq(0, 10, length.out= 1001)
+par(mfrow= c(1, 2))
+par(mar= c(1,1,1,1)) # podešavanje margina; inače piše margins too large ili margins too small
+plot(x, exp(x), type= "l", main= "Exponential")
+plot(x, exp(x), type= "l", log= "y", main= "Linear") # kul
+#### Vježba: prikaži svaku distribuciju od spomenutih na str 25-27
+par(mfrow= c(1,1))
+hist(runif(10000, 0, 1), probability = T)
+x= seq(0,1, length.out= 101)
+lines(x, dunif(x, 0, 1), lwd= 5) # linije isto trebaju x i y podatke da bi ih nacrtali
+
+hist(rnorm(10000, 0, 1), probability = T)
+x= seq(-4, 4, length.out= 101)
+lines(x, dnorm(x, 0, 1), lwd= 2) # # linije isto trebaju x i y podatke da bi ih nacrtali
+
+hist(rexp(1000, rate = 0.7), probability= T)
+x= seq(0,8, lenght.out= 101)
+lines(x, dexp(x, rate= 0.7) lwd= 2) # ovo trebaš napraviti naknadno
+
+hist(rgamma(1000, shape = 1)) # izlgeda ko eksponencijalna; ovisno kolko stavimo shape
+x= 
