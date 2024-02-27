@@ -644,6 +644,58 @@ y
 x[x>0]
 x[which(x>0)] # gornji slučaj je manje tipkanja
 
+x= 1:3
+x[5:n] # imamo NA sve do kraja, makar vektor ima samo 3 elementa
+x= sample(5:20, size= 30, replace= T)
+x[order(x, decreasing= T)][1:5] # zadatak je bio pronaći prvih 5 najvećih elemenata
+
+x= sample(1:8, 20, replace= T)
+mean(x, trim= T)
+quant=quantile(x)
+mean(x, trim= 0.25) # 'trim' must be numeric of length one
+                    # uglavnom, biramo neki broj za trim i to je to
+
+x= sample(1:60, size= 40)
+y= sample(1:50, size= 40)
+cor(x, y, method= "spearman") # -0.1596623
+cor(x, y, method= "pearson") # -0.1565892
+cor(x, y, method= "kendall") # -0.1205128
+
+euraud= structure(scan(paste0("https://github.com/gagolews/teaching-data/raw/master/marek/euraud-20200101-20200630.csv"),
+                       comment.char= "#"), currency_from= "EUR", currency_to= "GBP")
+?approx
+?spline
+
+
+n= sample(1:10, size= 20, replace= T)
+interval= c(-Inf, 3, 6, 9, Inf)
+as.logical(findInterval(n, interval))
+
+x= sample(1:10, size= 5) # 2 7 8 5 6
+y= sample(1:10, size= 5) # 2 8 5 3 1
+
+which(x== min(x)) # 1 ; 2 7 8 5 6
+which(y== min(y)) # 5; 2 8 5 3 1
+which.min(x) # 1
+which.min(y) # 5
+which.max(x) # 3
+which.max(y) # 2
+rev(x) # obrće redoslijed elemenata; 6 5 8 7 2
+rev(y) # 1 3 5 8 2
+which.min(x)
+which(x== min(x))
+
+x= c(letters[1:6])
+y= c(3, 1, 2, 1, 1, 4)
+x[which.min(y)] # "b"
+x[which.max(y)] # "f"
+
+x= sample(1:10, size= 10, replace= T)
+
+
+
+
+
 
 
 
