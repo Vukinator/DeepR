@@ -691,7 +691,8 @@ x[which.min(y)] # "b"
 x[which.max(y)] # "f"
 
 x= sample(1:10, size= 10, replace= T)
-
+as.logical(diff(x)
+as.logical(order(x) # order() pokazuje koji je element vektora po veličini (npr. 1 5 7 9; to znači da je peti element drugi po veličini, sedmi je element treći, deveti je element četvrti itd.)
 
 
 
