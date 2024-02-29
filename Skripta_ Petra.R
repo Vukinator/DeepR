@@ -195,5 +195,18 @@ while(novac>140){
 } # "Imate 190 kn. Možete puno trošiti!"
   # "Imate 150 kn. Možete puno trošiti!"
 
+ime= c("Joža", "Jura", "Štef", "Martin", "Blaž")
+for(i in imena){
+  print(imena)
+}
+
+
+
+
+
+
+
+
+
 
 
