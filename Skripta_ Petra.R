@@ -195,18 +195,149 @@ while(novac>140){
 } # "Imate 190 kn. Možete puno trošiti!"
   # "Imate 150 kn. Možete puno trošiti!"
 
-ime= c("Joža", "Jura", "Štef", "Martin", "Blaž")
+imena= c("Josip", "Juraj", "Pepo", "Štef")
+for(i in imena){ # ovo znači da želimo ispisati svako ime u vektoru "imena"
+  print(i)
+} # [1] "Josip"
+  # [1] "Juraj"
+  # [1] "Pepo"
+  # [1] "Štef
+
+for(i in 1:length(imena)){
+  print(imena[i])
+} # [1] "Josip"
+  # [1] "Juraj"
+  # [1] "Pepo"
+  # [1] "Štef"
+
+imena.list= list("Josip", "Juraj", "Pepo", "Štef")
+for(i in imena.list){ # for petlja može ići i na liste!
+  print(i)
+} # [1] "Josip" 
+  # [1] "Juraj"
+  # [1] "Pepo"
+  # [1] "Štef
+
+for(i in 1:length(imena)){
+  print(paste(imena[i], "je na poziciji", i, "u vektoru"))
+} # "Josip je na poziciji 1 u vektoru"
+  # "Juraj je na poziciji 2 u vektoru"
+  # "Pepo je na poziciji 3 u vektoru"
+  # "Štef je na poziciji 4 u vektoru"
+
+primarni= seq(1, 10, by= 2)
+for (i in primarni){
+  print(i)
+} # [1] 1
+  # [1] 3
+  # [1] 5
+  # [1] 7
+  # [1] 9
+
+for (i in 1:length(primarni)){
+  print(primarni[i])
+} # [1] 1
+  # [1] 3
+  # [1] 5
+  # [1] 7
+  # [1] 9
+
+kocka= c(150, -40, 30, -110, 250)
+for(i in kocka){
+  print(i)
+} # [1] 150
+  # [1] -40
+  # [1] 30
+  # [1] -110
+  # [1] 250
+
+for(i in 1:length(kocka)){
+  print(kocka[i])
+} # [1] 150
+  # [1] -40
+  # [1] 30
+  # [1] -110
+  # [1] 250
+
+ivan.list= list(ime= "Ivan", hobi= c("Nogomet", "Tenis", "Košarka", jedina= F))
+for(i in ivan.list){
+  print(i)
+} # [1] "Ivan"
+  #                                 jedina 
+  # "Nogomet"   "Tenis" "Košarka"   "FALSE
+
+for(i in 1:length(ivan.list)){
+  print(ivan.list[i])
+} # dobro je, ali previše je outputa; ak se radi s listama, onda je donji primjer bolji
+
+for(i in 1:length(ivan.list)){
+  print(ivan.list[[i]])
+} # da
+
+matrica= matrix(1:15, ncol= 3, byrow= T)
+for(i in 1:nrow(matrica)){
+  for(j in 1:ncol(matrica)){
+    print(paste("U retku", i, "i stupcu", j, "matrica ima vrijednost", matrica[i,j]))
+  }
+} # [1] "U retku 1 i stupcu 1 matrica ima vrijednost 1"
+  # [1] "U retku 1 i stupcu 2 matrica ima vrijednost 2"
+  # [1] "U retku 1 i stupcu 3 matrica ima vrijednost 3"
+  # [1] "U retku 2 i stupcu 1 matrica ima vrijednost 4"
+  # [1] "U retku 2 i stupcu 2 matrica ima vrijednost 5"
+  # [1] "U retku 2 i stupcu 3 matrica ima vrijednost 6"
+  # [1] "U retku 3 i stupcu 1 matrica ima vrijednost 7"
+  # [1] "U retku 3 i stupcu 2 matrica ima vrijednost 8"
+  # [1] "U retku 3 i stupcu 3 matrica ima vrijednost 9"
+  # [1] "U retku 4 i stupcu 1 matrica ima vrijednost 10"
+  # [1] "U retku 4 i stupcu 2 matrica ima vrijednost 11"
+  # [1] "U retku 4 i stupcu 3 matrica ima vrijednost 12"
+  # [1] "U retku 5 i stupcu 1 matrica ima vrijednost 13"
+  # [1] "U retku 5 i stupcu 2 matrica ima vrijednost 14"
+  # [1] "U retku 5 i stupcu 3 matrica ima vrijednost 15"
+
+pero= c(150, -40, 30, -110, 250)
+for(i in pero){
+  if(i>0){
+    print("Pobjedio je taj dan")
+  } else
+    print("Izgubio je taj dan")
+} # [1] "Pobjedio je taj dan"
+  # [1] "Izgubio je taj dan"
+  # [1] "Pobjedio je taj dan"
+  # [1] "Izgubio je taj dan"
+  # [1] "Pobjedio je taj dan"
+
+for(i in pero){
+  print(paste("Današnji je rezultat vašeg kockanja", i))
+  if(i>250){
+    print("Odlično!")
+    next # da ide na idući primjer
+  } else if(i<100){
+    print("Grozno kockaš, odoh!")
+    break # da prestane sa iteriranjem u vektoru ako dođe do toga slučaja gdje je i<100
+  }
+} # [1] "Današnji je rezultat vašeg kockanja 150"
+  # [1] "Današnji je rezultat vašeg kockanja -40"
+  # [1] "Grozno kockaš, odoh!"
+
+imena= c("Josip", "Juraj", "Pepo", "Štef", "Petar Krešimir")
 for(i in imena){
-  print(imena)
-}
+  if(nchar(i)>8 | nchar(i)<5){
+    break
+  } 
+  print(i)
+} # [1] "Josip" 
+  # [1] "Juraj"
 
-
-
-
-
-
-
-
-
-
+rec= "Ana je danas radila do 10 navečer."
+znakovi= strsplit(rec, split= "")[[1]]
+brojac=0
+for(i in 1:length(znakovi)){
+  if((znakovi[i]=="a") | (znakovi[i]== "A")){
+    brojac= brojac+1
+  } else if(znakovi[i]== "t"){
+    break
+  }
+} 
+print(brojac) # Proučiti ovaj zadatak; rješavati takve zadatke.
 
