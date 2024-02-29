@@ -691,11 +691,63 @@ x[which.min(y)] # "b"
 x[which.max(y)] # "f"
 
 x= sample(1:10, size= 10, replace= T)
-as.logical(diff(x)
-as.logical(order(x) # order() pokazuje koji je element vektora po veličini (npr. 1 5 7 9; to znači da je peti element drugi po veličini, sedmi je element treći, deveti je element četvrti itd.)
+as.logical(diff(x))
+as.logical(order(x, decreasig= T))
 
+## Character vectors
 
+x= "Ja \volim\ slaninu \n\\\"/"
+nchar(x)
+cat(x, sep= "\n") # Ja olim slaninu
+                  # \"/
+x= r"(spam\n\\\"maps)"
+x
+cat(x, sep= "\n") # spam\n\\\"maps
+x= r"(Moje ime je Dominik)" # "Moje ime je Dominik"
+x= r'(Moje ime je Dominik)' # "Moje ime je Dominik"; nema razlike između '' i ""
+x= r"(Moje\ime\je\Dominik)" # "Moje\\ime\\je\\Dominik"
+x= r"(\Moje\ime\je\Dominik)" # \\Moje\\ime\\je\\Dominik
+x= r"(Moje\n ime\n je\n Dominik)" # "Moje\\n ime\\n je\\n Dominik"
+cat(x) # Moje\n ime\n je\n Dominik; vidiš da nema navodnika; cat() x prikazuje vektor bez navodnika
+nchar(x) # 25
+x= r"(Moje ime je Dominik)" # "Moje ime je Dominik"
+cat(x) # Moje ime je Dominik
+cat(x, sep= "\n") # Moje ime je Dominik
+cat("abc\bd\tef\rg\nhij", sep= "\n")
 
+#### Many strings, one object
+
+x= c(rep("narezak", 3), "slanina", NA_character_, "narezak")
+x # "narezak" "narezak" "narezak" "slanina" NA "narezak"
+length(x) # 6
+nchar(x) # 7  7  7  7 NA  7
+
+#### Concatenating character vectors
+
+paste(c("a", "b", "c"), c("1", "2", "3")) # "a 1" "b 2" "c 3"
+paste(c("a", "b", "c"), c("1", "2", "3"), sep= "") # "a1" "b2" "c3"
+paste(c("a", "b", "c"), 1:6, c("!", "?")) # "a 1 !" "b 2 ?" "c 3 !" "a 4 ?" "b 5 !" "c 6 ?"
+paste(c("a", "b", "c", "d"), collapse= ",") # "a,b,c,d"; collapse= je da svi elementi budu jedan niz, a ne svaki za sebe element
+paste(c("a", "b", "c", "d"), 1:2, sep= "", collapse= "") # "a1b2c1d2"
+paste(c("a", "b", NA_character_, "c"), "!", sep= "") # "a!"  "b!"  "NA!" "c!" 
+paste(c("a", "b", "c"), NA_character_, "!", sep= "\n") # "a\nNA\n!" "b\nNA\n!" "c\nNA\n!"
+
+#### Formatting objects
+
+x= c(123456.789, -pi, NA) # 123456.789000 -3.141593 NA
+format(x)
+cat(format(x, digits= 2, scientific= F, drop0trailing= T), sep= "\n") # 123456.8
+sprintf("%s%s", "a", c("X", "Y", "Z")) # "%s%s" je format                                                                     # -3.1
+sprintf("key= %s, value= %f", c("špek", "jaja"), c(100000, 0))
+
+#### Reading text data from files
+head(readLines("https://github.com/gagolews/teaching-data/raw/master/README.md")) # readLines se koristi kada imamo poveznicu
+
+### Pattern searching
+c("jaja", "luk", "slanina", "slanina") == c("jaja", "slanina") # recycling rule; TRUE FALSE FALSE  TRUE
+match(c("spam"))
+
+%in%
 
 
 
