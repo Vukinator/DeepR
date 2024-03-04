@@ -720,7 +720,7 @@ cat("abc\bd\tef\rg\nhij", sep= "\n")
 cat("abc\behg") # abehg
 cat("abc\bagj\tasg") # abagj	asg; \t je zapravo "Tab"
 cat("adgjagn\nsdg\bsdhas") # adgjagn
-                           # sdsdhas
+# sdsdhas
 
 #### Many strings, one object
 
@@ -746,9 +746,10 @@ paste(c("a", "b", "c"), NA_character_, "!", sep= "\n") # "a\nNA\n!" "b\nNA\n!" "
 #### Formatting objects
 
 x= c(123456.789, -pi, NA) # 123456.789000 -3.141593 NA
-format(x)
+format(x) 
 cat(format(x, digits= 2, scientific= F, drop0trailing= T), sep= "\n") # 123456.8
-sprintf("%s%s", "a", c("X", "Y", "Z")) # "%s%s" je format                                                                     # -3.1
+
+sprintf("%s%s", "a", c("X", "Y", "Z")) # "%s%s" je format (C programski jezik)                                                                 # -3.1
 sprintf("key= %s, value= %f", c("špek", "jaja"), c(100000, 0))
 
 #### Reading text data from files
@@ -760,34 +761,20 @@ match(c("jaja", "luk", "slanina", "slanina"), c("luk")) # [1] NA  1 NA NA
 c("jaja", "luk") %in% c("luk") # [1] FALSE  TRUE
 
 #### Partial matching
-startsWith(c("s", "spam", "spamtastic", "spontaneous", "spoon"), "spam") # [1] FALSE  TRUE  TRUE FALSE FALSE
-charmatch(c("s", "sp", "spam", "spams", "eggs", "bacon"), c("spam", "eggs")) # [1]  1  1  1 NA  2 NA
-charmatch(c("s", "sp", "spam", "spoo", "spoof"), c("spam", "spoon")) # [1]  0  0  1  2 NA
+startsWith(c("jajovo","jasna", "jajovod", "jajnik", "jajasto", "jajolik", "jajce"), "jaja") # FALSE FALSE FALSE FALSE TRUE FALSE FALSE; tj. jesu li prva 4 slova ovih riječi lijevo ista slova kao što su i u ovome desno
+charmatch(c("jao", "jaj", "jej", "jaja", "jao"), c("jaja")) # NA  1 NA  1 NA; podudaraju li se slova lijevo s onima desno (važno: ona lijevo moraju biti ili kraća ili iste duljine ko i ona desno)
+charmatch(c("jao", "jaj", "jej", "jaja", "jao"), c("jajasto", "jaooo", "jaolik")) # 0  1 NA  1  0; 0 znači da ima više podudaranja
+
 
 #### Matching anywhere within a string
-x= c("spam", "y spammite spam", "yummy SPAM", "sram")
-y= c("spam", "y spammite spam", "SPAM", "spam")
-grepl("spam", x, fixed= T) # [1]  TRUE  TRUE FALSE FALSE
+x= c("jaja", "špek", "kobase", "paradajz")
+grepl("ja", x) # TRUE FALSE FALSE FALSE
+
+
 
 ##### Exercise 6.2.
 grep(x,y, value= T)   #  "spam" "y spammite spam" "spam"  
 grep(x, y, value= F)  # [1] 1 2 4; vidi se, razlika je u outputu
-
-# ovo je samo za vježbu, da vidim kak stvari izgledaju
-a= "Ako je Mamić ratni profiter, onda je Dinamo zločinački klub"
-b= "Hajduk živi vječno."
-c= "Znam da je kup, ali ovo je prvi put u nekoliko mjeseci gdje se Dinamo nije znojio oko kluba kojeg bi rutinski trebao pobijediti. Koincidentalno ne igraju 'najbolji igrači' Petković, Baturina i Mišić... pa vi donesite zaključke"
-d= "Zar je moguće ove sezone da možemo konstatirati RUTINSKU POBJEDU????????????Ajmoooo"
-e="Jarni poslozio kockice u Dinamu jednim potezom .. kakav trener ljudi moji"
-f= "Odlicna utakmica,Dinamo ko violina,Gorica,nije to tak loše kakav je rezultat."
-g= "Bravo Dinamo svaka cast samo jako"
-h= "Nemojmo se zavaravati da je ovo bilo lagano i bez stresa, Gorica je mogla 'ladno zabiti 3-4 komada da je imala više sreće i pameti, ali tu je i naš golman da nešto obrani, bravo Zagorac!"
-i= "Luka Vrbančić u Nedjelju igra za Dubravu, danas zabije za Dinamo..."
-
-
-grep("Dinam", c(a,b,c,d,e,f,g,h,i), value= T)
-grep("^Dinam", c(a,b,c,d), perl = T) # stringovi koji počinju s "Dinam"
-# integer(0)
 
 grepl("^spam", x, perl= T)  #  TRUE FALSE FALSE FALSE
 # počinje li string sa "spam"
@@ -833,4 +820,17 @@ nchar(r"-{ab\n\\\t\\\\\"-)}-") # 16
 paste(NA, 1:5, collapse= "") # "NA 1NA 2NA 3NA 4NA 5"
 
 ##### Character vectors si prošao krajnje mlako. Sram te može biti.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
