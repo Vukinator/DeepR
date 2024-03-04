@@ -743,12 +743,56 @@ sprintf("key= %s, value= %f", c("špek", "jaja"), c(100000, 0))
 #### Reading text data from files
 head(readLines("https://github.com/gagolews/teaching-data/raw/master/README.md")) # readLines se koristi kada imamo poveznicu
 
-### Pattern searching
+#### Pattern searching
 c("jaja", "luk", "slanina", "slanina") == c("jaja", "slanina") # recycling rule; TRUE FALSE FALSE  TRUE
-match(c("spam"))
+match(c("jaja", "luk", "slanina", "slanina"), c("luk")) # [1] NA  1 NA NA
+c("jaja", "luk") %in% c("luk") # [1] FALSE  TRUE
 
-%in%
+#### Partial matching
+startsWith(c("s", "spam", "spamtastic", "spontaneous", "spoon"), "spam") # [1] FALSE  TRUE  TRUE FALSE FALSE
+charmatch(c("s", "sp", "spam", "spams", "eggs", "bacon"), c("spam", "eggs")) # [1]  1  1  1 NA  2 NA
+charmatch(c("s", "sp", "spam", "spoo", "spoof"), c("spam", "spoon")) # [1]  0  0  1  2 NA
+
+#### Matching anywhere within a string
+x= c("spam", "y spammite spam", "yummy SPAM", "sram")
+y= c("spam", "y spammite spam", "SPAM", "spam")
+grepl("spam", x, fixed= T) # [1]  TRUE  TRUE FALSE FALSE
+
+##### Exercise 6.2.
+grep(x,y, value= T)   #  "spam" "y spammite spam" "spam"  
+grep(x, y, value= F)  # [1] 1 2 4; vidi se, razlika je u outputu
+
+# ovo je samo za vježbu, da vidim kak stvari izgledaju
+a= "Ako je Mamić ratni profiter, onda je Dinamo zločinački klub"
+b= "Hajduk živi vječno."
+c= "Znam da je kup, ali ovo je prvi put u nekoliko mjeseci gdje se Dinamo nije znojio oko kluba kojeg bi rutinski trebao pobijediti. Koincidentalno ne igraju 'najbolji igrači' Petković, Baturina i Mišić... pa vi donesite zaključke"
+d= "Zar je moguće ove sezone da možemo konstatirati RUTINSKU POBJEDU????????????Ajmoooo"
+e="Jarni poslozio kockice u Dinamu jednim potezom .. kakav trener ljudi moji"
+f= "Odlicna utakmica,Dinamo ko violina,Gorica,nije to tak loše kakav je rezultat."
+g= "Bravo Dinamo svaka cast samo jako"
+h= "Nemojmo se zavaravati da je ovo bilo lagano i bez stresa, Gorica je mogla 'ladno zabiti 3-4 komada da je imala više sreće i pameti, ali tu je i naš golman da nešto obrani, bravo Zagorac!"
+i= "Luka Vrbančić u Nedjelju igra za Dubravu, danas zabije za Dinamo..."
 
 
+grep("Dinam", c(a,b,c,d,e,f,g,h,i), value= T)
+grep("^Dinam", c(a,b,c,d), perl = T) # stringovi koji počinju s "Dinam"
+                                     # integer(0)
 
+grepl("^spam", x, perl= T)  #  TRUE FALSE FALSE FALSE
+                            # počinje li string sa "spam"
+grepl("(?i)^spam|spam$", x, perl= T)  # TRUE  TRUE  TRUE FALSE
+                                      # počinje li string ili završava li sa "spam"
 
+#### Locating pattern occurences
+x= c("spam", "y spammite spam", "yummy SPAM", "sram")
+regexpr("spam", x, fixed = T) # regexpr() nalazi prvo pojavljivanje uzorka u stringu, a zadnji string nema podudaranja uzorka i zato se označuje s -1
+gregexpr("(?i)^spam|spam$", x, perl= T) # gregexpr() se koristi da se nađu sva podudaranja
+gregexpr("(?i)spam\\p{L}*", x, perl= T)
+
+##### Exercise 6.8.
+nchar("ab\n\\\t\\\\\"") # 8
+nchar(r"-{ab\n\\\t\\\\\"-)}-") # 16
+paste(NA, 1:5, collapse= "") # "NA 1NA 2NA 3NA 4NA 5"
+
+##### Tekst si prošao krajnje mlako. Sram te može biti.
+      
