@@ -1,0 +1,27 @@
+# PRVA ZADAĆA
+## 1 VEKTORI
+
+mary_sisters= 2
+mary_brothers= 5
+mary_siblings= c(mary_sisters, mary_brothers)ž
+class(mary_siblings)
+mary_sisters < mary_brothers
+answer= mary_sisters == mary_brothers
+
+numb_vector= c(2,5,4,8,9,1)
+numb3_vector= numb_vector*3
+
+seq_vector= seq(from= 150, to= 850, by= 50)
+three_vector= seq(from= 0, to= 2, by= 1)
+seq_vector + three_vector # grupe od 3 broja zbraja 5 puta (seq_vector[c(1,2,3)]+ three_vector[c(1,2,3)] + ... seq_vector[c(13,14,15)]+ three_vector[c(1,2,3)])
+
+log_vector= c(T, F, T, T)
+answer= log_vector[4]
+
+filip_vector= c(19,6,14,3,10,7,20)
+names(filip_vector)= c("yellow", "orange", "red", "green", "blue", "brown", "black")
+total_filip= sum(filip_vector)
+filip_blue= 
+
+
+
