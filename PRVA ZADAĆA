@@ -21,7 +21,19 @@ answer= log_vector[4]
 filip_vector= c(19,6,14,3,10,7,20)
 names(filip_vector)= c("yellow", "orange", "red", "green", "blue", "brown", "black")
 total_filip= sum(filip_vector)
-filip_blue= 
+filip_blue= filip_vector[5]
+nikola_vector= c(yellow= 3, orange= 9, red= 17, green= 7, blue= 6, brown= 2, black= 15)
+total_per_color= filip_vector + nikola_vector
+answer_red= filip_vector[3] == nikola_vector[3]
+filip_few= filip_vector<10
+names(filip_vector[length(filip_vector)+1]== 9)= "pink"
+
+
+
+
+
+
+
 
 
 
