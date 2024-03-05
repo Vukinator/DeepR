@@ -720,7 +720,9 @@ cat("abc\bd\tef\rg\nhij", sep= "\n")
 cat("abc\behg") # abehg
 cat("abc\bagj\tasg") # abagj	asg; \t je zapravo "Tab"
 cat("adgjagn\nsdg\bsdhas") # adgjagn
-# sdsdhas
+                           # sdsdhas
+cat("askf\rasifhog\tlahsf\ndpdog") # asifhog	lahsf
+                                   # dpdog
 
 #### Many strings, one object
 
@@ -768,24 +770,81 @@ charmatch(c("jao", "jaj", "jej", "jaja", "jao"), c("jajasto", "jaooo", "jaolik")
 
 #### Matching anywhere within a string
 x= c("jaja", "špek", "kobase", "paradajz")
-grepl("ja", x) # TRUE FALSE FALSE FALSE
+grepl("ja", x) # TRUE FALSE FALSE FALSE; našli smo "ja" u prvom elementu vektora x
+x= c("jaja", "jajca", "jajac", "jja", "maja")
+agrep("jaja", x, value= T) # jaja"  "jajca" "jajac" "jja"   "maja" # agrep() nam ispisuje djelomična podudaranja; postoje i mogućnosti da sami odredimo koliko ta odudaranja mogu iznositi
+agrep("jaja", x, value= F) # 1 2 3 4 5
+agrepl("jaja", x) # TRUE TRUE TRUE TRUE TRUE
 
 
 
 ##### Exercise 6.2.
-grep(x,y, value= T)   #  "spam" "y spammite spam" "spam"  
-grep(x, y, value= F)  # [1] 1 2 4; vidi se, razlika je u outputu
+x= c("jaja", "špek", "sir", "šunka", "luk")
+y= c("sir", "mast", "luk", "janje", "špek")
+grep("sir", c(x,y), value= F) # 3 6; 6 je zato što su se y spojio sa x i zato što tražimo redni broj elementa
+grep("sir", c(x,y), value= T) # "sir" "sir"; sada smo tražili točnu vrijednost elementa; to su sir i sir na 3. i 6. mjestu
 
-grepl("^spam", x, perl= T)  #  TRUE FALSE FALSE FALSE
-# počinje li string sa "spam"
-grepl("(?i)^spam|spam$", x, perl= T)  # TRUE  TRUE  TRUE FALSE
-# počinje li string ili završava li sa "spam"
+#### Using regular expressions (perl= T)
+
+grepl("^ja", c(x,y), perl= T) # TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE; nalazi li se "ja" na početku svakoga elementa vektora
+grepl("ja$", c(x,y), perl= T) # TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE; nalazi li se "ja" na kraju elementa
+grepl("^ja|ja$", c(x,y)) # "ja" na početku ili na kraju svakoga elementa
+
+
 
 #### Locating pattern occurences
-x= c("spam", "y spammite spam", "yummy SPAM", "sram")
-regexpr("spam", x, fixed = T) # regexpr() nalazi prvo pojavljivanje uzorka u stringu, a zadnji string nema podudaranja uzorka i zato se označuje s -1
-gregexpr("(?i)^spam|spam$", x, perl= T) # gregexpr() se koristi da se nađu sva podudaranja
-gregexpr("(?i)spam\\p{L}*", x, perl= T)
+
+x= c("jaja", "špek i jaja", "luk", "sos", "slanina i jaja")
+regexpr("jaja", x, fixed= T) # 1  8 -1 -1 11; -1 znači da nema podudaranja, a ostali govore od kojeg znaka počinje podudaranje
+                             # attr(,"match.length")
+                             # 4  4 -1 -1  4; -1 isto kao i gore; ostali brojevi pokazuju koliko se znakova podudara s uzorkom ("jaja")
+
+gregexpr("(?i)jaja\\p{L}*", x, perl= T) # isto kao i gore, samo što je zapisano u listu
+                                        # [[1]]
+                                        # [1] 1
+                                        # attr(,"match.length")
+                                        # [1] 4
+
+                                        # [[2]]
+                                        # [1] 8
+                                        # attr(,"match.length")
+                                        # [1] 4
+                                        
+                                        # [[3]]
+                                        # [1] -1
+                                        # attr(,"match.length")
+                                        # [1] -1
+
+                                        #[[4]]
+                                        # [1] -1
+                                        # attr(,"match.length")
+                                        # [1] -1
+
+                                        # [[5]]
+                                        # [1] 11
+                                        # attr(,"match.length")
+                                        # [1] 4
+
+regmatches(x, gregexpr("(?i)jaja\\p{L}*", x, perl= T)) # kao da smo u gregexpr() umetnuli value= T
+                                                       # [[1]]
+                                                       # [1] "jaja"
+
+                                                       # [[2]]
+                                                       # [1] "jaja"
+
+                                                       # [[3]]
+                                                       # character(0)
+
+                                                       # [[4]]
+                                                       # character(0)
+
+                                                       # [[5]]
+                                                       # [1] "jaja"
+
+r= "(?<basename>[^. ]+)\\.(?<extension>[^ ]*)"
+z= "dataset.csv.gz something_else.txt spam"
+regexpr(r, z, perl= T)
+
 
 #### Replacing pattern occurences
 
@@ -793,9 +852,14 @@ x= c("slanina", "luk", "čvarki", "kobase")
 sub("slanina", "špek", x) # "špek" "luk" "čvarki" "kobase"
 gsub("slanina", "špek", x) # "špek" "luk" "čvarki" "kobase"
 
+
+
+
 #### Splitting strings into tokens
 
 strsplit(c("slanina;špek;luk;čvarki"), ";", fixed= T) # "slanina" "špek" "luk" "čvarki"
+strsplit("Danas smo imali pismenu provjeru. Nadam se da će biti odlično.", " ") # eto, razdijelili smo sve riječi koje su bile u stringu
+
 
 #### Extracting substrings
 substring("špek i luk", first= 2, last= 4) # "pek"
@@ -820,7 +884,6 @@ nchar(r"-{ab\n\\\t\\\\\"-)}-") # 16
 paste(NA, 1:5, collapse= "") # "NA 1NA 2NA 3NA 4NA 5"
 
 ##### Character vectors si prošao krajnje mlako. Sram te može biti.
-
 
 
 
