@@ -1,5 +1,4 @@
-# PRVA ZADAĆA
-## 1 VEKTORI
+# 1 VARIJABLE, VEKTORI, MATRICE
 
 mary_sisters= 2
 mary_brothers= 5
@@ -26,14 +25,53 @@ nikola_vector= c(yellow= 3, orange= 9, red= 17, green= 7, blue= 6, brown= 2, bla
 total_per_color= filip_vector + nikola_vector
 answer_red= filip_vector[3] == nikola_vector[3]
 filip_few= filip_vector<10
-names(filip_vector[length(filip_vector)+1]== 9)= "pink"
+filip_vector= c(filip_vector, pink= 9) 
+new_filip_vector= c(filip_vector[1:2], filip_vector[length(filip_vector)+1], filip_vector[3:7])
+length(new_filip_vector)
+class(new_filip_vector)
 
+# 2 MATRICE
 
+A= matrix(105:124, nrow= 4)
+B= matrix(A*10, nrow= 4)
 
+pen_matrix= matrix(data= c(19,6,14,3,10,7,20,3,9,17,7,6,2,15,6,4,17,13,3,13,18),
+                   ncol= 7, byrow = T)
 
+pen_cost= matrix(data= c(pen_matrix[,1]*11, pen_matrix[,2]*10, pen_matrix[,3]*8,
+                         pen_matrix[,4]*15, pen_matrix[,5]*7, pen_matrix[,6]*11,
+                         pen_matrix[,7]*6), byrow = T, ncol= 7)
 
+pen_matrix= matrix(data= c(pen_matrix, 2,11,10,17,25,5,12,5,11,12,11,18,10,22),
+                   byrow= T, ncol= 7)
 
+total_vector= c(sum(pen_matrix[1,]), sum(pen_matrix[2,]), sum(pen_matrix[3,]),
+                sum(pen_matrix[4,]), sum(pen_matrix[5,]))
 
+pen_matrix= cbind(pen_matrix, total_vector)
+colnames(pen_matrix)= c("yellow", "orange", "red", "green","blue",
+                        "brown", "black", "total")
+rownames(pen_matrix)= c("Filip", "Nikola", "Ivana", "Karla", "Boris")
+mean(pen_matrix[,"black"])
+mean(pen_matrix[c("Filip", "Karla", "Boris"), "red"])
 
+# 2 FAKTORI, DATA FRAME, LISTE
+
+how_factor= factor(c("good", "bad", "average", "bad", "bad", "average", "average",
+                     "average", "bad", "good"), levels = ordered(c("bad", "average", "good")))
+
+levels(how_factor)= c("bd", "av", "gd")
+levels(how_factor)
+
+how_factor[10]<how_factor[2] # kako uspoređivati faktore?
+
+capital_df= data.frame(city= c("Berlin", "London", "Monaco", "Paris", "Vienna", "Zagreb"),
+                       population= c(3400000, 7000000, 28000, 2200000, 1600000, 850000),
+                       language= c("german", "english", "french", "french", "gernam", "croatian"),
+                       METRO= T, T, F, T, F, F)
+capital_df[2,3]
+abc_df= capital_df[2:6, ]
+capital_df$language
+subset(capital_df, language= "french")
 
 
