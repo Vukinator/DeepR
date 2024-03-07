@@ -73,5 +73,47 @@ capital_df[2,3]
 abc_df= capital_df[2:6, ]
 capital_df$language
 subset(capital_df, language= "french")
+# ne znam kak ispisati sve informacije o gradovima u kojima je populacija manja od 2000000
+str(capital_df) # nema faktora u data frameu
+levels(capital_df)= c("grad", "populacija", "jezik", "podzemna")
+# ne kužim kak promijeniti jezik sa engleskog na hrvatski koristeći levels()
+mean(capital_df$population)
+marc_list= list(ime= "Marc Murphy", 
+                rođena= 1992,
+                jezici= data.frame(jezik= c("engleski", "francuski", "njemački", "portugalski"),
+                                   znanje= c(10, 5, 9, 3),
+                                   komentar= c("Materini jezik.", "Preko CD-a naucio.", "Ucio u skoli.". "Jedva govorim."),
+                djeca= c("Amy","Marc Junior", "Mary")))
+marc_list$jezici
+marc_list[3]
+najdraze= marc_list[[length(marc_list)]][length(marc_list$djeca)] # ili marc_list[[4]] [3]
+marc_list$matrica= matrix(c("a","b","c", 100, 2000, 3000, T, F, T), nrow = 3, byrow= T)
+
+# 3 IF-ELSE NAREDBE, FUNKCIJE, APPLY FAMILIJA, FUNKCIJA grep()
+
+klik1_vec= c(239, 154, 90, 319, 120)
+klik2_vec= c(120, 111, 179, 210, 257)
+klik1_vec== 154
+klik2_vec >= 120 & klik2_vec < 180
+sum(klik2_vec > klik1_vec)
+# u zadatku nema klik_mat
+link= "www.unipu.hr"
+klikovi= sample(1:3981, size= 31)
+if(link == "www.unipu.hr"){
+  print("Rijec je o linku sveucilista")
+}
+if(klikovi[25] > 500){ # ovdje je strogo length(klikovi)= 1!
+  print("Danas je jako posjećena")
+}
+
+bodovi= 46
+
+if((bodovi>= 0) & (bodovi<=100)){
+  print("Broj bodova je u valjanom rasponu 0-100")
+} else if(bodovi < 0){
+  print("Broj bodova ne može biti negativan")
+} else if(bodovi > 100){
+  print("Broj bodova je premasio 100. Greska.")
+}
 
 
