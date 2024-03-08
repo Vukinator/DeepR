@@ -83,7 +83,7 @@ marc_list= list(ime= "Marc Murphy",
                 jezici= data.frame(jezik= c("engleski", "francuski", "njemački", "portugalski"),
                                    znanje= c(10, 5, 9, 3),
                                    komentar= c("Materini jezik.", "Preko CD-a naucio.", "Ucio u skoli.". "Jedva govorim."),
-                djeca= c("Amy","Marc Junior", "Mary")))
+                                   djeca= c("Amy","Marc Junior", "Mary")))
 marc_list$jezici
 marc_list[3]
 najdraze= marc_list[[length(marc_list)]][length(marc_list$djeca)] # ili marc_list[[4]] [3]
@@ -116,4 +116,22 @@ if((bodovi>= 0) & (bodovi<=100)){
   print("Broj bodova je premasio 100. Greska.")
 }
 
+brojac= 13
+while(brojac<120){
+ print(paste("Brojac je jednak", brojac, "."))
+  if (brojac%%7){
+    print("Brojac je djeljiv sa 7")
+  } 
+  if (brojac< 50){
+    brojac= brojac + 5
+  } 
+  if (brojac >= 50){
+    brojac= brojac+ 10
+  }
+  print("Kraj")
+} # kul
 
+lapply(list("hello world", 1.41, 3, "my name is", "xyz", F, 75899, 21.456, T, "statistics"), class)
+lapply(list("hello world", 1.41, 3, "my name is", "xyz", F, 75899, 21.456, T, "statistics"), function(x)){
+  
+}
