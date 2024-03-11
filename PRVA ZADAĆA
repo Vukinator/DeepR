@@ -118,7 +118,7 @@ if((bodovi>= 0) & (bodovi<=100)){
 
 brojac= 13
 while(brojac<120){
- print(paste("Brojac je jednak", brojac, "."))
+  print(paste("Brojac je jednak", brojac, "."))
   if (brojac%%7){
     print("Brojac je djeljiv sa 7")
   } 
@@ -132,6 +132,73 @@ while(brojac<120){
 } # kul
 
 lapply(list("hello world", 1.41, 3, "my name is", "xyz", F, 75899, 21.456, T, "statistics"), class)
-lapply(list("hello world", 1.41, 3, "my name is", "xyz", F, 75899, 21.456, T, "statistics"), function(x)){
-  
+lista= list("hello world", 1.41, 3, "my name is", "xyz", F, 75899, 21.456, T, "statistics")
+
+lapply(lista,function(x){
+  klasa=class(x)
+  if(klasa=="numeric")
+    {return(0)}
+  if(klasa=="character")
+    {return(nchar(x))}
+  if(klasa=="logical")
+    {return(as.character(x))}
+  })
+
+for (i in 1:length(lista)){
+  if(class(lista[[i]])!= "logical"){
+    print(paste("Na", i, "mjestu nalazi se", lista[[i]], "i ona je tipa", class(lista[[i]])))
+  }
+} # kul; treba razmišljati
+
+sastavak= "Znakovni string"
+znak= strsplit(sastavak, "")[[1]]
+
+brojac= 0
+for (i in znak){
+  if((znak== "A") | (znak== "a")){
+    brojac= brojac + 1
+  }
+  if(znak == "Y"){
+    break
+  }
+} # Error in if ((znak == "A") | (znak == "a")) { : 
+  # the condition has length > 1
+
+
+funkcija= function(log= T, x, y){
+  if((class(log)!= "logical") | (class(x)!="numeric") | (class(y)!= "numeric")){
+    return(NULL)
+  } else if (log== F){
+    return(-100)
+  } else if(log== T){
+    return(abs(x*y))
+  }
+} # kul
+
+prosti= c("3X je prostXtrue", "100X je primeXfalse", "16X je prostXfalse", "29X je prostXtrue", "11X is primeXtrue")
+
+prosti_split= strsplit(prosti, "X")
+lapply(prosti, toupper)
+izaberi= function(vektor, indeks){
+  vektor[indeks]
 }
+izaberi(prosti, 3)
+izaberi(prosti_split, 1)
+
+lapply(prosti_split, function(x){
+  if()
+}
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
