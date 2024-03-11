@@ -205,5 +205,20 @@ vapply(pocetni_char, info, character(2))
 
 stringovi= c("www.unicath8x.hr", "www.unicathx.hr", "www.unipu.hr",
              "www.datacamp.hr", "www.xtoday.hr")
-grep("^www\\", stringovi)
+grep("^www..*[0-9]+x.*.hr$", stringovi) # "www" ko u linku, pa neki tekst i onda "hr" ko u svakoj stranici na netu
+# "." matches any character
+# "\" for exit
+# [^]
+# "^" na početku
+grepl("^www..*[0-9]+x.*.hr$", stringovi)
+
+# 4 VRIJEME I DATUMI
+tekst1= "23xkolovozx2014"
+tekst2= "23,,,08...2014"
+tekst3=”08-23-2014”
+
+datum1= as.Date()
+
+
+
 
