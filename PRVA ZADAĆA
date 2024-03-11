@@ -137,12 +137,12 @@ lista= list("hello world", 1.41, 3, "my name is", "xyz", F, 75899, 21.456, T, "s
 lapply(lista,function(x){
   klasa=class(x)
   if(klasa=="numeric")
-    {return(0)}
+  {return(0)}
   if(klasa=="character")
-    {return(nchar(x))}
+  {return(nchar(x))}
   if(klasa=="logical")
-    {return(as.character(x))}
-  })
+  {return(as.character(x))}
+})
 
 for (i in 1:length(lista)){
   if(class(lista[[i]])!= "logical"){
@@ -162,7 +162,7 @@ for (i in znak){
     break
   }
 } # Error in if ((znak == "A") | (znak == "a")) { : 
-  # the condition has length > 1
+# the condition has length > 1
 
 
 funkcija= function(log= T, x, y){
@@ -186,19 +186,24 @@ izaberi(prosti, 3)
 izaberi(prosti_split, 1)
 
 lapply(prosti_split, function(x){
-  if()
-}
+  if(prosti_split[[3]]== F){
+    return(-10)
+  } else {
+    return(prosti_split[[1]])
+  }
+}) # Error in if (prosti_split[[3]] == F) { : the condition has length > 1
 
+pocetni= sample(1:100, size= 50)
+pocetni_char= sapply(pocetni, as.character)
 
+info= function(vektor){
+  znakovi= strsplit(vektor, "")[[1]]
+  return(c(brojznak= nchar(vektor), prviznak= znakovi[[1]]))
+} # odlično
 
+vapply(pocetni_char, info, character(2))
 
-
-
-  
-  
-
-
-
-
-
+stringovi= c("www.unicath8x.hr", "www.unicathx.hr", "www.unipu.hr",
+             "www.datacamp.hr", "www.xtoday.hr")
+grep("^www\\", stringovi)
 
