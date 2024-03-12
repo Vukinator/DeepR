@@ -217,7 +217,32 @@ tekst1= "23xkolovozx2014"
 tekst2= "23,,,08...2014"
 tekst3=”08-23-2014”
 
-datum1= as.Date()
+tekst1= "23xkolovozx2014"
+tekst2= "23,,,08...2014"
+tekst3= "08-23-2014"
+
+datum1= as.Date(tekst1, format= "%dx%Bx%Y")
+datum1 # "2014-08-23"
+datum2= as.Date(tekst2, format= "%d,,,%m...%y")
+datum2 # "2020-08-23"
+datum3= as.Date(tekst3, format= "%m-%d-%y")
+datum3 # "2020-08-23"
+
+tekst1= "kol,23-'14,Sek:11,Min:39,Sat:19" # %b ide kada je mjesec napisan tekstom, a ne brojem
+tekst2= "23>08>2014,19>39>11"
+tekst3= "23-08-2014 19:39:11"
+
+dat.vr1= as.POSIXct(tekst1, format= "%b,%d-'%Y,Sek:%S,Min:%M,Sat:19") # "2014-08-23 00:39:11 CEST"
+
+dat.vr2= as.POSIXct(tekst2, format= "%d>%m>%Y,%H>%M>%S") # "2014-08-23 19:39:11 CEST"
+
+dat.vr3= as.POSIXct(tekst3, format= "%d-%m-%Y%H:%M:%S") # "2014-08-23 19:39:11 CEST"
+format(c(dat.vr1, dat.vr2, dat.vr3), format= "m=%M")
+
+as.Date("20-01-2016")-as.Date("01-01-1970") # Time difference of 6940 days
+as.POSIXct("24-10-2002 19:34:19") - as.POSIXct("19-02-1979 11:23:30") # Time difference of 2070 days
+
+
 
 
 
