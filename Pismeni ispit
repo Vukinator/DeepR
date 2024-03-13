@@ -22,17 +22,43 @@ animal_df[2, "continent"]
 cetiri.df= animal_df[-1,1]
 animal_df$speed
 subset(animal_df, continent== "Africa")
+mean(animal_df$speed)
+sort(animal_df$speed, decreasing= T)
+tezina= 78
+if(tezina<0){
+  print("Ponovno unesite težinu, jer ona mora biti pozitivan broj.")
+}
+if(nchar(tezina)== 1 | nchar(tezina)== 2){
+  print("Vaša težina je razumna")
+} else{
+  print("Vi ste teži od prosjeka")
+}
 
+lista1= list(2000, 285, 4999, 567, 11, 303, 4897654, 1, 43, 409, 8888)
+tribroj= function(broj){
+  if(nchar(broj)== 3){
+    return(broj + 1000)
+  } else{
+    return(broj %% 10)
+  }
+}
 
+petBroj=  function(x) {
+  if (length(x) == 3 && all(x >= 100 && x <= 999)) {
+    return(x + 1000)
+  } else {
+    return(x / 10)
+  }
+}
+lista2= lapply(lista1, petBroj)
 
-
-
-
-
-
-
-
-
-
+brojac= 5
+while(brojac<100){
+  print(paste("Brojac je", brojac,"."))
+  brojac= brojac + 6
+  if(brojac== "0$\5$"){
+    print("Brojac ima zadnju znamenku '0' ili '5'")
+  }
+}
 
 
