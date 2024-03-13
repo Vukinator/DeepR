@@ -1,1 +1,38 @@
+# PISMENI ISPIT
+
+zivotinje_vec= c(4, 7, 5, 2, 9, 8, 7)
+names(zivotinje_vec)= c("krave", "zebre", "zirafe", "pingvini", "ptice", "klokani", "ribe")
+dio_vec= zivotinje_vec[c("klokani", "pingvini")]
+zivotinja_ptica= zivotinje_vec[5]
+zivotinja_ptica= zivotinje_vec["ptice"]
+sum(zivotinje_vec[3:6])
+malo_vec= zivotinje_vec[zivotinje_vec> 5 & zivotinje_vec<= 8]
+zivotnje2_vec= c(magarac= 10, zivotinje_vec)
+length_factor= factor(c("short", "long", "long", "average", "long", "short", "average", "average"))
+length_factor= ordered(length_factor, levels= c("short", "average", "long"))
+length_factor[2] > length_factor[5]
+length_factor= ordered(length_factor, levels= c("short", "average", "long"))
+animal_df= data.frame(animal= c("elephant", "kangaroo", "polar bear", "giraffe", "dingo"),
+                      legs= c(4,2,4,4,4),
+                      continent= c("Africa", "Australia", "Arctic", "Africa", "Australia"),
+                      carnivore= c(F, F, T, F, T),
+                      speed= c(40,70, 10, 50, 48))
+animal_df[2,3]
+animal_df[2, "continent"]
+cetiri.df= animal_df[-1,1]
+animal_df$speed
+subset(animal_df, continent== "Africa")
+
+
+
+
+
+
+
+
+
+
+
+
+
 
