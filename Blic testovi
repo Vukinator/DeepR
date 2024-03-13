@@ -1,16 +1,64 @@
-# Blic test 1
+# PRVI BLIC
+
+x= seq(from= 2000, to= 1880, by= -10)
+number= c(2,10,3,7,6,3,4,1)
+number[2]
+number[number<5]
+A= matrix(data= c("Hello", "USA", "James", "World", "Bond", seq(100, 500, by= 100), T, F, F, T, F),
+          byrow = T, nrow= 3)
+colnames(A)=c("prvi", "drugi", "treći", "četvrti", "peti")
+rownames(A)= c("char", "numeric", "logical")
+A[, 2]
+ocjeneF= factor("vrlo dobar","dovoljan”,”dobar”,”nedovoljan”,”odlican”,”odlican”,”vrlo dobar”,”dobar”,”odlican”,”dovoljan")
+ocjeneF= ordered(ocjeneF, levels= c("nedovoljan", "dovoljan", "dobar", "vrlo dobar", "odlican"))
+ocjeneF[7]>ocjeneF[3]
 
 
+# DRUGI BLIC
 
+bodovi1_vec= c(50, 34, 28, 78, 88, 57)
 
+bodovi2_vec= c(89,23,56,40,94,50)
 
+bodovi_mat= matrix(data= c(bodovi1_vec, bodovi2_vec), byrow= T, nrow= 2)
 
+bodovi2_vec[bodovi2_vec>= 35 & bodovi2_vec<70] # 56 40 50
 
+bodovi2_vec>= 35 & bodovi2_vec<70 # FALSE FALSE  TRUE  TRUE FALSE  TRUE
 
+bodovi1_vec>40 & bodovi2_vec<=78 # FALSE FALSE FALSE  TRUE FALSE  TRUE
 
+bodovi1_vec[bodovi1_vec>40 & bodovi2_vec<=78] # 78 57
 
+sum(bodovi1_vec>bodovi2_vec-5) # 3
 
+bodovi_mat%%10
 
+pogodi= 10
+if(class(pogodi)!= "character"){
+  print("Niste pogodili tip varijable")
+} else if(nchar(pogodi)!=5){
+  print("Pogodili ste tip varijable, ali niste pogodili broj znakova.")
+} else{
+  print("Bravo! Pogodili ste!")
+}
+
+k= 101
+while (k> -50) {
+  if (k!= 74) {
+    print(paste("Broj je jednak", k, "."))
+  }
+  
+  if (k %% 10 == 0) {
+    print("Broj je dijeljiv s 10.")
+  }
+  
+  k <- k - 9
+}
+print("Završetak while petlje.")
+
+brojevi= list(sample(1:10, size= 20, replace= T), sample(1:10, size= 20, replace= T), sample(1:10, size= 20, replace= T))
+lapply(brojevi, mean)
 
 
 
