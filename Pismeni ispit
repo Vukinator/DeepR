@@ -55,10 +55,25 @@ lista2= lapply(lista1, petBroj)
 brojac= 5
 while(brojac<100){
   print(paste("Brojac je", brojac,"."))
-  brojac= brojac + 6
-  if(brojac== "0$\5$"){
+  if(brojac %% 10 == 0 | brojac %% 10 == 5){
     print("Brojac ima zadnju znamenku '0' ili '5'")
   }
+  brojac= brojac + 6
+  if(brojac>= 100){
+    print("THE END")
+  }
 }
+
+tekst1= "mjesec:11, dan:30, godin:98"
+tekst2= "Bila je godina 1998, mjesec studeni, i to dan u mjesecu 30"
+datum1= as.Date(tekst1, format= "mjesec:%m, dan:%d, godin:%y")
+datum2= as.Date(tekst2, format= "Bila je godina %Y, mjesec %B, i to dan u mjesecu %D")
+
+datum1 + 65
+format(datum1, format= "%aT%B")
+
+
+
+
 
 
