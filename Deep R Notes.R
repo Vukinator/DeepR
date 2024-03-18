@@ -887,6 +887,45 @@ paste(NA, 1:5, collapse= "") # "NA 1NA 2NA 3NA 4NA 5"
 
 
 
+x= 2^seq(-2, 2, length.out= 101)
+opcije= list(col= "blue", lty= "dashed", type= "l")
+do.call(plot, c(list(x, log2(x), xlab= "x", ylab= "log2(x)"), opcije))
+
+rand_brojx= list(sample(-40:50, size= 1000, replace= T))
+rand_brojy= list(sample(-20:20, size= 1000, replace= T))
+do.call(plot, c(rand_brojx, rand_brojy)) # oke je ajde, ionak ne znaš kaj bi nacrtal, ovo je samo bilo za vježbu
+
+
+
+### Common higher-order functions (Map, Reduce, Filter, Find)
+#### Map
+
+x= list(1:3, seq(0,2, by=1), c(1, 0, NA_real_, 0, 0, 1, NA_real_))
+sqrt(x)# errpr; objekt ne smije biti lista, ali nema veze- zato imamo Map()
+sqrt(unlist(x)) # može tak, čekaj
+Map(sqrt, x)# kul; gle kak je ovo dobro
+length(x) # 3
+Map(length,x) # [[1]] [1] 3 [[2]] [1] 3 [[3]] [1] 7
+Map(mean,x) #[[1]] [1] 2 [[2]] [1] 1 [[3]] [1] NA
+unlist(Map(mean, x)) # [1] 2 1 NA
+
+Map(function(n) round(runif(n, -1, 1)), c(2,4,6))
+Map(seq, c(1, 11, 21), c(6, 13, 29)) # kul; seq(1,6), seq(11,13), seq(21, 29)
+Map(seq, c(1, 11, 21, 31), 40, length.out= c(10,5))
+unlist(Map(mean, x, MoreArgs= list(na.rm= T))) # [1] 2.0 1.0 0.4
+unlist(Map(function(xi) mean(xi, na.rm= T), x)) # [1] 2.0 1.0 0.4
+# str 123
+
+
+
+
+
+
+
+
+
+
+
 
 
 
