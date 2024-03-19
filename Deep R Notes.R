@@ -914,7 +914,46 @@ Map(seq, c(1, 11, 21), c(6, 13, 29)) # kul; seq(1,6), seq(11,13), seq(21, 29)
 Map(seq, c(1, 11, 21, 31), 40, length.out= c(10,5))
 unlist(Map(mean, x, MoreArgs= list(na.rm= T))) # [1] 2.0 1.0 0.4
 unlist(Map(function(xi) mean(xi, na.rm= T), x)) # [1] 2.0 1.0 0.4
-# str 123
+
+
+dup= function(tekst, ponavljanja){
+  sapply(seq_along(tekst),
+         function(i) paste(rep(tekst[i], ponavljanja[i]),
+                           collapse= ""))
+}
+
+windows= function(k, n){
+  start= seq_len(n-k+1)
+  lapply(start, function(start) start:(start + k -1))
+}
+
+ngram= function(tekst){
+  n= nchar(tekst)
+  lapply(1:n, function(i) substr(tekst, i, i+1))
+}
+
+a= c(1,3,5,7)
+movstat= function(f, x, k){
+  Map(f, seq_along(x), function(i) x[i:(i+k-1)])
+}
+
+rekod= function(vektor, a){
+  jedinstvene= unique(vektor)
+  jedinstvene_broj= length(jedinstvene)
+  if(jedinstvene_broj>a){
+    stop("Broj jedinstvenih vrijednosti veći je od maksimalno specificiranoga broja a")
+    # Ispisat će, ali ćemo i dalje dobiti točan broj jedinstvenih unosa, makar smo dolje u funkciji naveli 3
+  } 
+  match(vektor, jedinstvene)
+}
+
+rekodirano= rekod(c("a", "b", "c", "d"), 3)
+rekodirano
+### nastaviti na str. 130!
+
+
+
+
 
 
 
