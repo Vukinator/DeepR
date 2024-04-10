@@ -952,6 +952,75 @@ rekodirano
 ### nastaviti na str. 130!
 
 
+#DEEPER
+
+rr= function(n, d){
+  x= runif(n)
+  round(x, d)
+}
+
+rr2= function(n, d){
+  stopifnot(
+    # "n" i "d" moraju biti "numeric" i "finite"; sad se nabrajaju uvjeti
+    # treba razmišljati; ovo je jako kul
+    is.numeric(n), is.finite(n), n>= 1, length(n)>= 1,
+    is.numeric(d), is.finite(d), d>= 1, length(d)>= 1
+  )
+  x= runif(n)
+  round(x, d)
+  # hist(x); ovo je bilo samo da vidim kak bi izgledalo
+  # fora
+  # stopifnot() je najstroža provjera koju imamo! Ostale su custom made by us. Excessive uniformity is as bad as chaos.
+}
+
+rr3= function(n, d){
+  if(!is.numeric(n))
+    n= as.numeric(n) # ako nije numeric, bit će pretvoren u numeric
+  if(length(n)>1)
+    warning("Koristit će se samo prvi element od 'n'")
+  n= n[1]
+  if(!is.numeric(d))
+    d= as.numeric(d)
+  if(length(d)> 1)
+    warning("Koristit će se samo prvi element od 'd'")
+  d= d[1]
+  x= runif(n)
+  round(x, d)
+  # treba razmišljati i dati si vremena. 
+  # We are always expected to rely on common sense. Let’s not be boring bureaucrats.
+}
+
+nlargest= function(x,n){
+  if(!is.numeric(x) || !is.numeric(n))
+    stop(cat("Svi unosi moraju biti numerički."))
+  if(length(x)<= n)
+    return(sort(x, decreasing= T))
+  else
+    return(sort(x, decreasing= T)[1:n])
+  # treba razmišljati i dati si vremena, a ne odmah na CHATGPT!
+  # SVE JE LOGIČNO!!! ZA LOGIKU TREBA VREMENA!!!
+}
+a= sample(-100:100, size= 100)
+source("mylib.R") # prekul; vrijedi samo ako je odgovarajući direktorij
+
+actual= as.numeric(sample(0:60, size= 100, replace= T))
+predicted= as.numeric(sample(0:60, size= 100, replace= T))
+
+rms= function(x, y){
+  # ovdje idu uvjeti iz knjige; radi se o stopifnot(all.equal())
+  rmse= sqrt((mean(x-y)^2))
+  return(rmse)
+}
+
+
+
+
+
+
+
+
+
+
 
 
 
