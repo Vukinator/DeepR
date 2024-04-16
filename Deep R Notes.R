@@ -123,7 +123,7 @@ plot(x, asin(x),
      ylab= "asin(x), acos(x)")
 lines(x, acos(x), col= "red", lty= "dashed")
 legend("topright", c("asin(x)", "acos(x)"),
-                     lty= c("solid", "dashed"), col= c("black", "red"), bg= "white")
+       lty= c("solid", "dashed"), col= c("black", "red"), bg= "white")
 
 plot(x, abs(asin(x^2)),
      type= "l",
@@ -223,7 +223,7 @@ log(ifelse(z>=0, z, NA_real_)) # isti rezultat kao i u 220 retku
 ifelse(x>=y,
        ifelse(z>=x, z, x),
        ifelse(z>=y, z, y)
-       ) # primjer kako ugnježđeni ifelse()može biti kao pmax
+) # primjer kako ugnježđeni ifelse()može biti kao pmax
 
 ##### Exercise 3.3.
 n= 100000
@@ -256,7 +256,7 @@ as.numeric(c(T, F, NA, T, NA, F)) # eksplicitna konverzija;1  0 NA  1 NA  0
 as.logical(c(-2,-1,0,0,0,0,1,2,3,4,535,15815)) # explicit conversion;TRUE  TRUE FALSE FALSE FALSE FALSE TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
 
 a= c(NA, 10, F, T) + 10 # implicitna konverzija; NA 20 10 11
-                        # T + 10= 11 i F + 10= 10; zato što je T= 1, a F= 0
+# T + 10= 11 i F + 10= 10; zato što je T= 1, a F= 0
 
 #Exercise 4.1.
 y= sample(c(T, F), replace= T, size= 1000, prob= c(0.5, 0.5))
@@ -304,14 +304,14 @@ patterns # dobili smo podudaranje u prvom i drugom elementu needle vektora
 
 #### Exercise 4.2.
 euraud= structure(scan(paste0("https://github.com/gagolews/teaching-data/raw/master/marek/euraud-20200101-20200630.csv"),
-      comment.char= "#"), currency_from= "EUR", currency_to= "GBP")
+                       comment.char= "#"), currency_from= "EUR", currency_to= "GBP")
 eurgbp= structure(scan(paste0("https://raw.githubusercontent.com/gagolews/teaching-data/master/marek/eurgbp-20200101-20200630.csv"),
                        comment.char = "#"), currency_from= "EUR", currency_to= "GBP")
 eurusd= structure(scan(paste0("https://raw.githubusercontent.com/gagolews/teaching-data/master/marek/eurusd-20200101-20200630.csv"), 
-             comment.char= "#"), currency_from= "EUR", currency_to= "USD")
+                       comment.char= "#"), currency_from= "EUR", currency_to= "USD")
 eur.list= list(euraud, eurgbp, eurusd)
 eur.list # točno; kul; uvijek probaj sa što manje koda napraviti što više moguće
-          # inače, liste se najčešće koriste kao spremišta za ostale R objekte; npr. za spremanje rezultata istraživanja i tome slično
+# inače, liste se najčešće koriste kao spremišta za ostale R objekte; npr. za spremanje rezultata istraživanja i tome slično
 #### Exercise 4.3.
 
 i= 1:10
@@ -332,50 +332,50 @@ structure(x, additional_attribute= 1:10)
 attr(x, "names") # "narezak" "kobasa"  "celer"
 c(a= 2, b= 3) # može i tak da ih se samo imenuje u vektoru umjesto korištenja names()
 c(a= 2, b= 3) # a b 
-              # 2 3 
+# 2 3 
 list(a= 1, b= 2) # može i tak da ih se samo imenuje u listi
 u= c(a= c(x= 1, y= 2), b= 3, c= c(z=4)) # prekul
 attr(u, "names") # "a.x" "a.y" "b"   "c.z"
 quantile(runif(100)) # puno funkcija vraća vektore; quantile je samo jedan primjer
-                    #   0%          25%          50%          75%         100% 
-                    #  0.0008266114 0.2542507872 0.4895991031 0.7429493846 0.9997708010 
+#   0%          25%          50%          75%         100% 
+#  0.0008266114 0.2542507872 0.4895991031 0.7429493846 0.9997708010 
 hist(runif(100), plot= FALSE)# primjer da i hist() može vratiti vektor, a ne samo graf #  breaks [1] 0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0
-                              # counts [1] 12 11 12  7  5 12 10  8 11 12
-                              # density [1] 1.2 1.1 1.2 0.7 0.5 1.2 1.0 0.8 1.1 1.2
-                              # mids [1] 0.05 0.15 0.25 0.35 0.45 0.55 0.65 0.75 0.85 0.95
-                              # xname [1] "runif(100)"
-                              # equidist [1] TRUE
-                              # attr(,"class") [1] "histogram"
+# counts [1] 12 11 12  7  5 12 10  8 11 12
+# density [1] 1.2 1.1 1.2 0.7 0.5 1.2 1.0 0.8 1.1 1.2
+# mids [1] 0.05 0.15 0.25 0.35 0.45 0.55 0.65 0.75 0.85 0.95
+# xname [1] "runif(100)"
+# equidist [1] TRUE
+# attr(,"class") [1] "histogram"
 options() # uh brate, puno je vektora
 capabilities() # uh brate, jako puno vektora
 
 df= head(iris) # znaš tu funkciju; prikazuje prvih šest redova
 typeof(df) # "list"
 unclass(df) # Sepal.Length
-            #  [1] 5.1 4.9 4.7 4.6 5.0 5.4
-            # Sepal.Width
-            #  [1] 3.5 3.0 3.2 3.1 3.6 3.9
-            # Petal.Length
-            # [1] 1.4 1.4 1.3 1.5 1.4 1.7
-            # Petal.Width [1] 0.2 0.2 0.2 0.2 0.2 0.4
-            # Species[1] setosa setosa setosa setosa setosa setosa 
-                         #Levels: setosa versicolor virginica
-            # attr(,"row.names") [1] 1 2 3 4 5 6
+#  [1] 5.1 4.9 4.7 4.6 5.0 5.4
+# Sepal.Width
+#  [1] 3.5 3.0 3.2 3.1 3.6 3.9
+# Petal.Length
+# [1] 1.4 1.4 1.3 1.5 1.4 1.7
+# Petal.Width [1] 0.2 0.2 0.2 0.2 0.2 0.4
+# Species[1] setosa setosa setosa setosa setosa setosa 
+#Levels: setosa versicolor virginica
+# attr(,"row.names") [1] 1 2 3 4 5 6
 
 x= structure(c("neki", "objekt"), names= c("X", "Y"),
              atribut1= "vrijednost1",
              atribut2= "vrijednost2",
              atribut3= "vrijednost3")
-                        # ILI
+# ILI
 x= structure(c(X="neki", Y="objekt"),
              atribut1= "vrijednost1",
              atribut2= "vrijednost2",
              atribut3= "vrijednost3")
 attr(x, "atribut1") # "vrijednost1"; tražimo specifični atribut
 attributes(x) # names [1] "X" "Y"
-              # atribut1 [1] "vrijednost1"
-              # atribut2 [1] "vrijednost2"
-              # atribut3 [1] "vrijednost3"
+# atribut1 [1] "vrijednost1"
+# atribut2 [1] "vrijednost2"
+# atribut3 [1] "vrijednost3"
 structure(x, 
           atribut1= NULL,
           atribut4= "dodano",
@@ -459,25 +459,25 @@ ime[hrana== "špek" & godina>1940] # Štefu je špek najdraže jelo i rođen je 
 mean(godina[hrana== "špek"]) # 1940; prosječna godina rođenja onih kojima je špek najdraža hrana
 mean(1969-godina[hrana!= "špek"]) # Prosječni broj godina onih kojima špek 1969. godina nije bilo baš i najfinije jelo
 x= structure(x, names= letters[1:10]) # a   b   c   d   e   f   g   h   i   j 
-                                      # 10  20  30  40  50  60  70  80  90 100
+# 10  20  30  40  50  60  70  80  90 100
 x[c("a", "f", "a", "g", "z")] # a    f    a    g <NA> 
-                              # 10   60   10   70   NA 
+# 10   60   10   70   NA 
 x[1:3] # a b c
-       # 10 20 30
+# 10 20 30
 x[-(1:5)] # f g h i j
-          # 60  70  80  90 100; dakle, iz prikaza se izuzimaju svi elementi od prvog do petoga, uključujući i prvi i peti
+# 60  70  80  90 100; dakle, iz prikaza se izuzimaju svi elementi od prvog do petoga, uključujući i prvi i peti
 x[x>70] # h i j
-        # 80 90 100
+# 80 90 100
 
 y= structure(y, names= c("prvi", "drugi", "treći"))
 y # $prvi [1] 1
-  # $drugi [1] 11 12
-  # $treći [1] 21 22 23
+# $drugi [1] 11 12
+# $treći [1] 21 22 23
 y[c("prvi", "drugi")] # $prvi [1] 1
-                      # $drugi [1] 11 12
+# $drugi [1] 11 12
 
 structure(c(1,2,3), names= letters[1:3]) # a b c 
-                                         # 1 2 3 
+# 1 2 3 
 ljudi= list(ime, hrana, godina)
 
 #### Replacing elements
@@ -495,8 +495,8 @@ y[1:3]= list(1, c("a", "b", "c"), c(T, F)) # promijenili smo sve elemente svih e
 y[1]= list(1:10)# zamijenili smo prvi element liste listom koja sadrži 11 elemenata brojeva od 1 do 10
 y[-1]= 10:11 # zamijenili smo drugi element brojem 10 i treći element s 11, a prvi je element ostao isti
 y # $a [1]  1  2  3  4  5  6  7  8  9 10
-  # $b [1] 10
-  # $c [1] 11
+# $b [1] 10
+# $c [1] 11
 
 ##### Exercise 5.5.
 y
@@ -511,14 +511,14 @@ y[1:3]= list("a")
 y[c(1,2,1)]= c("a", "b", "c")
 y= list(1,2,3,4)
 y[1]= NULL # [[1]] [1] 2; kada se subsetta sa NULL, onda se taj element gubi iz vektora/liste
-           # [[2]] [1] 3
-           # [[3]] [1] 4
+# [[2]] [1] 3
+# [[3]] [1] 4
 ##### Inserting new elements
 x= 1:5
 x[length(x)+1]= 6 # 1 2 3 4 5 6
 x[10]= 10 # 1  2  3  4  5 6 NA NA NA 10; nema veze koliko elemenata vektor ima; ukoliko postoji prazan prostor, popunit će se s NA sve do željenoga elementa vektora
 x["a"]= 11  #                               a
-            # 1  2  3  4  5  6 NA NA NA 10 11
+# 1  2  3  4  5  6 NA NA NA 10 11
 x["z"]= 12
 x["b"]= 13
 
@@ -527,9 +527,9 @@ x["b"]= 13
 
 c("špek", "luk", "gulaš") %in% c("špek", "gulaš") # TRUE FALSE  TRUE
 x= structure(1:12, names= month.abb) # Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec
-                                     # 1    2   3   4   5   6   7   8   9  10  11  12 
+# 1    2   3   4   5   6   7   8   9  10  11  12 
 x[!names(x) %in% c("Jan", "May", "Sep", "Oct")] # Feb Mar Apr Jun Jul Aug Nov Dec
-                                                # 2   3   4   6   7   8   11  12
+# 2   3   4   6   7   8   11  12
 match(c("špek", "luk", "gulaš"), c("špek", "gulaš")) # 1 NA  2
 match(month.abb, c("Nov", "Dec")) # NA NA NA NA NA NA NA NA NA NA  1  2; "Nov" ima podudaranja i prvi je element vektora (zato nije NA), a "Dec" je drugi element vektora (zato nije NA)
 match(c("Nov", "Dec", "Jan"), month.abb) # 11 12  1; podudaraju se studeni, prosinac i siječanj
@@ -548,11 +548,11 @@ as.logical(findInterval(x, (intervals[2:3]))) # FALSE  TRUE  TRUE  TRUE  TRUE  T
 name= c("Štef", "Jura", "Ivek", "Daša", "Mara", "Joža")
 food= c("špek", "kobase", "kobase", "bažulj", "sarma", "mahune")
 split(name, food) # bažulj [1] "Daša"
-                  # kobase [1] "Jura" "Ivek"
-                  # mahune [1] "Joža"
-                  # sarma [1] "Mara"
-                  # špek [1] "Štef"; uvijek vraća listu
-                  # split uzima bilo koji output i dijeli elemente jednoga vektora u odgovarajuće podgrupe
+# kobase [1] "Jura" "Ivek"
+# mahune [1] "Joža"
+# sarma [1] "Mara"
+# špek [1] "Štef"; uvijek vraća listu
+# split uzima bilo koji output i dijeli elemente jednoga vektora u odgovarajuće podgrupe
 
 x= c(0, 0.2, 0.25, 0.4, 0.66, 1)
 split(x, findInterval(x, c(-Inf, 0.25, 0.5, 0.75, Inf))) # dobivamo listu; $`1`[1] 0.0 0.2 `2` [1] 0.25 0.40 `3` [1] 0.66 `4`[1] 1
@@ -625,9 +625,9 @@ x[[1]] # [1] 1
 y= x
 y[]= c("u", "v")
 y #  a   b   c   d
-  # "u" "v" "u" "v"
-  # attr(,"atribut1")
-  # [1] "da"
+# "u" "v" "u" "v"
+# attr(,"atribut1")
+# [1] "da"
 y= structure(c(1, 10), names= c("f", "g"), atribut1= "ravnoduško", atribut2= "iznenađenko")
 y*x # x je duži od y; pomnožilo se 1*1= 1, 2*10= 20, 3*1= 3, 4*10= 40)
 y[c("h", "i")]= c(100, 1000) # dodali smo još nove elemente da bi bilo iste dužine kao i x
@@ -653,7 +653,7 @@ x= sample(1:8, 20, replace= T)
 mean(x, trim= T)
 quant=quantile(x)
 mean(x, trim= 0.25) # 'trim' must be numeric of length one
-                    # uglavnom, biramo neki broj za trim i to je to
+# uglavnom, biramo neki broj za trim i to je to
 
 x= sample(1:60, size= 40)
 y= sample(1:50, size= 40)
@@ -699,7 +699,7 @@ as.logical(order(x, decreasig= T))
 x= "Ja \volim\ slaninu \n\\\"/"
 nchar(x)
 cat(x, sep= "\n") # Ja olim slaninu
-                  # \"/
+# \"/
 x= r"(spam\n\\\"maps)"
 x
 cat(x, sep= "\n") # spam\n\\\"maps
@@ -813,8 +813,8 @@ standardise= function(x){
   cat("luk\n")
   cat("sarma\n")
 } # špek
-  # luk
-  # sarma
+# luk
+# sarma
 
 concatenate= function(a,b){
   z= paste(a, b, sep= "")
@@ -1015,10 +1015,10 @@ split2= function(vec1, vec2){
     split(vec1, vec2.dugo)
   }
 } # kul
-  
+
 my_unsplit= function(x, g){
   if(!is.list(x) || !is.factor(g) || length(x)!= length(g)){
-  stop("'x' mora biti lista, 'y' mora biti faktor, a oba unosa moraju biti iste duljine")
+    stop("'x' mora biti lista, 'y' mora biti faktor, a oba unosa moraju biti iste duljine")
   }
   unsplit(x, g)
 }
@@ -1053,11 +1053,11 @@ ajmobrate2= function(x, y, z){
     stop("Ispravite unos. 'x' mora biti uzlazno sortiran")
   } else{
     interpolirane= approx(x, y, xout = z)
-      }
+  }
   return(as.numeric(interpolirane))
 } 
-  # Zapravo, nisi bil daleko od rješenja; ispravi ovo uz pomoć CHATGPT-a;
-  # Mislim da se to može nazvati napretkom; Bože, hvala ti!
+# Zapravo, nisi bil daleko od rješenja; ispravi ovo uz pomoć CHATGPT-a;
+# Mislim da se to može nazvati napretkom; Bože, hvala ti!
 
 dpareto= function(variable, low.bound, shape.par){
   if(any(variable<= 0)){
@@ -1166,7 +1166,7 @@ znak= function(x){
 #### Condition: Either T or F
 
 if(c(T, F)) cat("Alo e kaj radiš") # error
-                                   # Condition lenght > 1
+# Condition lenght > 1
 
 pepermint= function(x){
   if(x>0.5)
@@ -1415,7 +1415,7 @@ rms.ispravno= function(x){
   RMS= sqrt(mean(x^2))
   return(RMS)
 }
- 
+
 # trebaš se upoznati sa sample da bi mogao napisati svoju verziju
 mojrunifsample= function(raspon, velicina, vjerojatnost){
   if(length(velicina)< 1 || length(velicina)> 1 || !is.numeric(velicina)){
@@ -1428,25 +1428,26 @@ mojrunifsample= function(raspon, velicina, vjerojatnost){
       stop(cat("Pogrešan unos vjerojatnosti. Ponovno unesite vjerojatnosti."))
     uzorak= numeric(raspon) # prazni numerički vektor za pohranu uzorka
     kum_suma= cumsum(vjerojatnost) # kumulativna suma svih vjerojatnosti; 
-                                   # !> 1
+    # !> 1
     for(i in seq_len(raspon)){
       x = runif(1) # svaki element vektora je jedan broj!
       uzorak[i]= sum(kum_suma < x) + 1 # svaki element je sumirana kumulativna suma
-                                       # logičkih elemenata + 1
-                                       # ovisno kreće li se od 0 ili 1; R po defaultu kreće od 1
+      # logičkih elemenata + 1
+      # ovisno kreće li se od 0 ili 1; R po defaultu kreće od 1
     }                                  # zapravo, u else {} smo postavili da ide od 1
   } else {
     uzorak= floor(runif(raspon, 1, raspon + 1) # floor
-    }
+  }
   return(uzorak)
 }
 # nisam ovo znal riješiti; 
 mojrunifsample(10, 10, runif(10)) # prvi element podrazumijeva 1:10; drugi 10 
-                                  # je za veličinu uzorka
-                                  # runif(10) je za vjerojatnosti; po defaultu 
-                                  # ide od min= 0 do max= 1
+# je za veličinu uzorka
+# runif(10) je za vjerojatnosti; po defaultu 
+# ide od min= 0 do max= 1
 
 ### Operators are functions
+`<`(`+`(`*`(`-`(3), 4)), 5) # (-3*4)+ (5-3) < 5
 x= 1:5
 "x[3]" == "'['(x,3)"
 
@@ -1457,6 +1458,19 @@ x[3]; '['(x,3)
 
 #primjer:
 x[[3]]; '[['(x,3)
+
+### oke, primjeri s data frameom:
+set.seed(139183)
+auti= data.frame(snaga= as.numeric(sample(75:660, size= 300)),
+                 obujam= rnorm(300, 0.9, 6),
+                 km= as.numeric(sample(10000:150000, size= 300)),
+                 masa.kg= as.numeric(sample(800:2185, size= 300)),
+                 vrata= as.numeric(sample(2:5), size= 300, replace= T),
+                 godiste= as.numeric(sample(1989:2023, size= 300, replace= T)),
+                 cijena= as.numeric(sample(10000:200000, size= 300)))
+# sad treba ispraviti podatke zato kaj su stvarno nelogični
+auti$obujam= abs(auti$obujam)
+
 
 y= list(1:5, 11:17, 26:31)
 unlist(Map('[',y,3)) # treći podelementi prvog, drugog i trećeg elementa
@@ -1494,8 +1508,179 @@ names(x)= letters[seq_along(x)]
 }
 
 y= 1:5
-add(y)<- 10
-add(y,3)<- 1000 # ovdje je "3" zapravo where
-'*tmp*'<- y
+add(y)<- 10 # svi se elementi zbrajaju s 10
+add(y,3)<- 1000 # trećem elementu u y se zbraja s 1000
+y<- 'add<-'(y, 3, 1000)
+`*tmp` <- y
+y= 'add<-'(`*tmp*`, 3, 100) # koristi se Alt Gr + 7!!!
 ### nastavi na str. 168
+
+'[<-'== x[i]= value
+x= 1:5
+'[<-'(x, c(3, 5), NA_real_) # treći i peti element postaju "NA_real_"
+
+'[[<-' == x[[i]]= value
+'[[<-'(x, 1, NA_character_) # ako se radi o listi, može se zamijeniti samo jedna komponenta
+                            # zato što u listi jedna komponenta može sadržavati više podkomponenti
+x= list(c(1123,1,12,3,1,25), 5, c(2134723,1, 12341,4))
+'[[<-'(x, 1, c(1,2,3,4,5)) # da, dobili smo ono što smo rekli (vezano za liste)
+
+`extend<-` <- function(x, value){
+  x[length(x) + 1]= value
+  x
+}
+
+x= 1
+extend(x)<- 3 # stvarno ne znam zakaj "could not find function "extend<-""
+
+x= "špek"
+attributes(x)= list(oblik= "ovalno", miris= "mmm") # dodani su atributi x-u
+attributes(x)= c(attributes(x), okus= "mmmmmmmmmm") # dobro je no
+attr(x, "boja")= "60% crvenog, 40% bijelog" # može i tak; uostalom, to je bilo u prvom poglavlju
+y= `attributes<-`(x, NULL)# y= "špek"; bez atributa
+
+x= as.numeric(1:3)
+names(x)= c("jen", "dva", "tri")
+names(x)[1]= "špek" # prvi smo element preimenovali u špek
+
+`recode<-`<- function(x, value){
+  if(!is.null(names(value))){
+    for(i in names(value)){
+      x[x== old_val] <- value[old_val]
+    }
+  }
+  x
+} # ovo mi nejde
+
+x= Titanic
+View(x)
+y= iris
+View(y)
+
+y[levels("Species")]= c("set","ver", "vir")
+
+#### Arguments and local variables
+
+##### Call by "value"
+test_change= function(y){
+  y[1]= 7
+  y
+}
+y= 1:5
+test_change(y) # 7 je postalo prvi element
+x= 1:5
+test_change(x) # isto
+
+##### Variable scope
+test_change= function(x){
+  x= x+1
+  z= -x
+  z # "x" i "z" su samo lokalne varijable, tj. postoje samo kada se funkcija vrti
+}
+test_change(x) # -2 -3 -4 -5 -6
+
+##### Default arguments; svaka ih funkcija ima, ali s "..." možemo birati bilo što što je default u nekoj drugoj funkciji i zatim to uvrstiti u funkciju u koju želimo
+# default argumenti su najčešće konstante; generalno, mogu se mijenjati
+log(12342)
+log(12342, base= 2)
+
+?download.file()
+
+test_default= function(x= 1){
+  x
+} # default argumenti su samo konstante; mogu se mijenjati i ubacivati u različite funkcije
+test_default(1)
+test_default(2)
+
+##### Lazy vs. eager evaluation
+lazy_test= function(x) 1 # x is not used
+
+lazy_test({cat("da"); 7}) # 1
+
+lazy_test2= function(x){
+  cat("nešto je trulo")
+  y= x + x
+  cat("aaa")
+  y
+}
+lazy_test2(2) # nešto je truloaaa[1] 4
+
+##### Elipsis, `...`
+data= data.frame(x= runif(9),
+                 y= runif(9),
+                 z= runif(9))
+# nota bene: lapply je jako slično for() i Map()
+
+testing= function(...){
+  list(...)
+} # bilo kaj da upišem u konzolu, vratit će nam input kao listu
+
+lapply(list(c(1, NA, 3), 4:9), mean, na.rm= T)
+integrate(dbeta, 0, 1, 
+          shape1= 2.5, shape2= 0.5)
+
+###### Exercise 9.28
+lapply(c(3,9,7), function(n) runif(n))
+lapply(c(3,9,7), function(n) runif(n, min=-1, max= 1))
+
+test_deparse= function(x){
+  deparse(x) 
+} # We can access expressions passed as a function’s arguments without evaluating them
+test_deparse(testing+1+2)
+
+###### Exercise 9.30
+plot.default((1:100)) 
+shapiro.test(log(rlnorm(100)))
+
+transform(subset(
+  iris, Sepal.Length>= 7.7 & Sepal.Width>= 3.0,
+  select= c(Species, Sepal.Length:Sepal.Width # Species i od Sepal.Length do Sepal.Width)
+),
+Sepal.Length.mm= Sepal.Length/10) # kul
+
+test_match= function(x= c("a", "b", "c")){
+  match.arg(x)
+}
+test_match() # po defaultu nam se prikazuje prvi element, no to nije točno!
+             # to je bilo samo da se pokaže primjer da neke funkcije uzimaju neke argumente po defaultu
+             # bizzare default arguments
+
+ls(envir=baseenv()) # ispisuje sve objekte koji su definirani u "base" modulu
+
+###### Exercise 9.40
+moj.position= function(mjesto, x){
+  if(!is.numeric(mjesto) && !is.integer(x))
+    stop("Redni broj elementa mora biti numerički")
+  
+  pozicije= which(x==mjesto)
+  if(length(pozicije)== 0)
+    return(NA)
+  else
+    return(pozicije)
+} # dakle, vratit će indekse onih mjesta u vektoru na kojima
+  # se nalaze brojevi koje želimo (npr. c(3,4,5))
+  # napokon; i ovo si rješil uz pomoć GPTija
+
+moj.position(c(3,4,5), a)
+a= c(3,4,5,1,2,5,5,2,1,5,2,1,6,2,1)
+
+moj.find= function(mjesto, x){
+  if(!is.numeric(mjesto) && !is.character(x))
+    stop("Mjesto mora biti numerička vrijednosti, a varijabla mora biti character")
+  pozicija= which(mjesto == x[])
+  if(length(pozicija)== 0)
+    return(NA)
+  else
+    return(pozicije)
+} # ovo vrijedi samo za vektore u kojima je Dinamo jedina riječ
+
+dinamo= c("Dinamo je najbolji", "Nema do Dinama", "Ajmo Dinamo", "Mamićuuu")
+moj.find("Dinamo", dinamo)
+# trebalo bi staviti da traži slova, a ne da traži cijeli match
+# ali to nije u zadatku. Budem videl.
+
+
+moj.reduce= function() { # za reduce nam treba funkcija; ne kužim kaj trebam napraviti
+  
+}
 
