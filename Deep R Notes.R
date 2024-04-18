@@ -1709,16 +1709,34 @@ parovi= function(x){
 } # Ne znam ovo riješiti.
 
 ###### Exercise 9.43
+dir= "C:\\Users\\sgasparovic\\Desktop\\Dominik_knjižnica" # zapravo, treba mi samo character vector
+dir= as.character() # ovaj je ispravan zato kaj nećemo da je jedan direktorij po defaultu
+fajlovi= list.files(path= dir)
+velicina= file.size(fajlovi)
+total= sum(velicina)
+args= commandArgs(trailingOnly= T) # ovo znači da se program može izvesti
+                                   # na Windows Command Promptu!
+                                   # zapravo, sve ovo treba biti u funkciji! Ne smije biti otprije definirano
+                                   # rm(sve)
+
+ajmo= function(dir){
+  fajlovi= list.files(path= dir, full.names = T) # dobivamo popis fajlova
+  total= sum(file.size(fajlovi)) # veličina svih fajlova zajedno
+  return(total)
+} # funkcionira; nije zapravo bilo teško; nemoj biti pekmezica; ovo je samo kod funkcije; treba još napisati kak na Command Promptu
+args= commandArgs(trailingOnly = T)
 
 
 ###### Exercise 9.44
+tools::package_dependencies
 
 
 
-
-
-
-
+odel1= for (i in z){
+  w.predicted= lm(w~z)
+  return(w.predicted)
+}
+} # najs; ovo mi je prva regresija pomoću for petlje
 
 
 
