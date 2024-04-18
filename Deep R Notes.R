@@ -1681,6 +1681,50 @@ moj.find("Dinamo", dinamo)
 
 
 moj.reduce= function() { # za reduce nam treba funkcija; ne kužim kaj trebam napraviti
-  
+  # riješeno doma
 }
+
+###### Exercise 9.42
+
+# znači: lista; duljina= x-k+1, y[[i]]= f(x[i:(i+k-1)], ...)
+# length(y)= length(x)-k+1
+ 
+slide= function(f, x, k, ...){
+  if(k > length(x))
+    stop()
+  y= vector("list", length(x)-k+1) # nisam znal da se ovak može inicijalizirati vektor
+  for (i in seq_along(y)){
+    y[[i]]= f(x[i:(i + k -1)], ...)
+  }
+  return(y)
+} # ponovno, bez GPTija nisi uspel riješiti zadatak
+
+parovi= function(x){
+  brojac= 0
+  slide(function(vec){
+    if(vec[1]< vec[2])
+      brojac= brojac + 1
+  }, x, 2)
+  return(brojac)
+} # Ne znam ovo riješiti.
+
+###### Exercise 9.43
+
+
+###### Exercise 9.44
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
