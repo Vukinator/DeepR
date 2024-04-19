@@ -1728,15 +1728,73 @@ args= commandArgs(trailingOnly = T)
 
 
 ###### Exercise 9.44
-tools::package_dependencies
+myPkgs <- c("MASS", "Matrix", "KernSmooth", "class", "cluster", "codetools")
+pdb <- available.packages(repos = findCRANmirror("web"))
+dep1= tools::package_dependencies(myPkgs, db= pdb,
+                                  which= "most",
+                                  recursive= T,
+                                  reverse= T) # previše; ovdje nisu svi argumenti na defaultu
+dep1= tools::package_dependencies(myPkgs, db= pdb) # svi argumenti su na default
+dep1 # ovo je samo primjer; sad zadatak/vježba
+
+moduli= c("MASS", "purrr")
+moj.depend= function(x, reverse= T){
+  dostupni= utils::available.packages()
+  if(reverse)
+    zavisni= names(dostupni$Depends[dostupni$Depends %in% x])
+  else
+    zavisni= names(dostupni$Depends[x %in% dostupni$Depends])
+  return(zavisni)
+} # kolko je ovo jednostavno, a ti to nemreš riješiti bez GPTija
+  # $ operator is invalid for atomic vectors
 
 
+w.predicted= numeric()
+z= runif(50, 10, 100)
+w= runif(50, 1, 10)
 
-odel1= for (i in z){
+model1= for (i in w){
   w.predicted= lm(w~z)
-  return(w.predicted)
-}
-} # najs; ovo mi je prva regresija pomoću for petlje
+  return(w.predicted$fitted.values)
+} # prva regresija uz pomoć for()
+
+# S3
+
+#typeof()- ispisuje nam unutarnju strukturu objekta
+
+xt= structure(123, class= "POSIXct")
+xd= structure(123, class= "Date")
+c(typeof(xt), typeof(xd)) # ista unutarnja struktura
+print(xt) # 1970-01-01 01:02:03 CET
+print(xd) # 1970-05-04; makar imaju istu unutarnju strukturu, različit je ispis
+
+x= iris[1:3, 1:2]
+attr(x, "class") # data.frame
+typeof(x) # list
+`attr<-`(x, "class", NULL) # ovo je zapravo unclass()
+class(x)= "Date" # jednako kao i attr(x, "class")= "Date"
+
+class(NULL) # NULL
+class(c(T, F, NA)) # logical
+class(c(1,2,3, NA_real_)) # numeric
+class(list(list(1,2,3), LETTERS)) # list
+class(function(x) x) # function
+
+#### Generics and method dispatching
+##### Generics, default and custom methods
+print(print) # dobili smo kod funkcije print
+             # sve funkcije poput ovoga zovu se generičkima
+
+x= structure(
+  c(1,2,3,4,5),
+  levels= c("a", "b", "c"),
+  class= "categorical"
+)
+print(x)
+print.default(x)
+### Nastaviti na str. 191!
+
+
 
 
 
