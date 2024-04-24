@@ -1521,7 +1521,7 @@ x= 1:5
 
 '[[<-' == x[[i]]= value
 '[[<-'(x, 1, NA_character_) # ako se radi o listi, može se zamijeniti samo jedna komponenta
-                            # zato što u listi jedna komponenta može sadržavati više podkomponenti
+# zato što u listi jedna komponenta može sadržavati više podkomponenti
 x= list(c(1123,1,12,3,1,25), 5, c(2134723,1, 12341,4))
 '[[<-'(x, 1, c(1,2,3,4,5)) # da, dobili smo ono što smo rekli (vezano za liste)
 
@@ -1635,172 +1635,206 @@ shapiro.test(log(rlnorm(100)))
 transform(subset(
   iris, Sepal.Length>= 7.7 & Sepal.Width>= 3.0,
   select= c(Species, Sepal.Length:Sepal.Width # Species i od Sepal.Length do Sepal.Width)
-),
-Sepal.Length.mm= Sepal.Length/10) # kul
-
-test_match= function(x= c("a", "b", "c")){
-  match.arg(x)
-}
-test_match() # po defaultu nam se prikazuje prvi element, no to nije točno!
-             # to je bilo samo da se pokaže primjer da neke funkcije uzimaju neke argumente po defaultu
-             # bizzare default arguments
-
-ls(envir=baseenv()) # ispisuje sve objekte koji su definirani u "base" modulu
-
-###### Exercise 9.40
-moj.position= function(mjesto, x){
-  if(!is.numeric(mjesto) && !is.integer(x))
-    stop("Redni broj elementa mora biti numerički")
+  ),
+  Sepal.Length.mm= Sepal.Length/10) # kul
   
-  pozicije= which(x==mjesto)
-  if(length(pozicije)== 0)
-    return(NA)
-  else
-    return(pozicije)
-} # dakle, vratit će indekse onih mjesta u vektoru na kojima
+  test_match= function(x= c("a", "b", "c")){
+    match.arg(x)
+  }
+  test_match() # po defaultu nam se prikazuje prvi element, no to nije točno!
+  # to je bilo samo da se pokaže primjer da neke funkcije uzimaju neke argumente po defaultu
+  # bizzare default arguments
+  
+  ls(envir=baseenv()) # ispisuje sve objekte koji su definirani u "base" modulu
+  
+  ###### Exercise 9.40
+  moj.position= function(mjesto, x){
+    if(!is.numeric(mjesto) && !is.integer(x))
+      stop("Redni broj elementa mora biti numerički")
+    
+    pozicije= which(x==mjesto)
+    if(length(pozicije)== 0)
+      return(NA)
+    else
+      return(pozicije)
+  } # dakle, vratit će indekse onih mjesta u vektoru na kojima
   # se nalaze brojevi koje želimo (npr. c(3,4,5))
   # napokon; i ovo si rješil uz pomoć GPTija
-
-moj.position(c(3,4,5), a)
-a= c(3,4,5,1,2,5,5,2,1,5,2,1,6,2,1)
-
-moj.find= function(mjesto, x){
-  if(!is.numeric(mjesto) && !is.character(x))
-    stop("Mjesto mora biti numerička vrijednosti, a varijabla mora biti character")
-  pozicija= which(mjesto == x[])
-  if(length(pozicija)== 0)
-    return(NA)
-  else
-    return(pozicije)
-} # ovo vrijedi samo za vektore u kojima je Dinamo jedina riječ
-
-dinamo= c("Dinamo je najbolji", "Nema do Dinama", "Ajmo Dinamo", "Mamićuuu")
-moj.find("Dinamo", dinamo)
-# trebalo bi staviti da traži slova, a ne da traži cijeli match
-# ali to nije u zadatku. Budem videl.
-
-
-moj.reduce= function() { # za reduce nam treba funkcija; ne kužim kaj trebam napraviti
-  # riješeno doma
-}
-
-###### Exercise 9.42
-
-# znači: lista; duljina= x-k+1, y[[i]]= f(x[i:(i+k-1)], ...)
-# length(y)= length(x)-k+1
- 
-slide= function(f, x, k, ...){
-  if(k > length(x))
-    stop()
-  y= vector("list", length(x)-k+1) # nisam znal da se ovak može inicijalizirati vektor
-  for (i in seq_along(y)){
-    y[[i]]= f(x[i:(i + k -1)], ...)
+  
+  moj.position(c(3,4,5), a)
+  a= c(3,4,5,1,2,5,5,2,1,5,2,1,6,2,1)
+  
+  moj.find= function(mjesto, x){
+    if(!is.numeric(mjesto) && !is.character(x))
+      stop("Mjesto mora biti numerička vrijednosti, a varijabla mora biti character")
+    pozicija= which(mjesto == x[])
+    if(length(pozicija)== 0)
+      return(NA)
+    else
+      return(pozicije)
+  } # ovo vrijedi samo za vektore u kojima je Dinamo jedina riječ
+  
+  dinamo= c("Dinamo je najbolji", "Nema do Dinama", "Ajmo Dinamo", "Mamićuuu")
+  moj.find("Dinamo", dinamo)
+  # trebalo bi staviti da traži slova, a ne da traži cijeli match
+  # ali to nije u zadatku. Budem videl.
+  
+  
+  moj.reduce= function() { # za reduce nam treba funkcija; ne kužim kaj trebam napraviti
+    # riješeno doma
   }
-  return(y)
-} # ponovno, bez GPTija nisi uspel riješiti zadatak
-
-parovi= function(x){
-  brojac= 0
-  slide(function(vec){
-    if(vec[1]< vec[2])
-      brojac= brojac + 1
-  }, x, 2)
-  return(brojac)
-} # Ne znam ovo riješiti.
-
-###### Exercise 9.43
-dir= "C:\\Users\\sgasparovic\\Desktop\\Dominik_knjižnica" # zapravo, treba mi samo character vector
-dir= as.character() # ovaj je ispravan zato kaj nećemo da je jedan direktorij po defaultu
-fajlovi= list.files(path= dir)
-velicina= file.size(fajlovi)
-total= sum(velicina)
-args= commandArgs(trailingOnly= T) # ovo znači da se program može izvesti
-                                   # na Windows Command Promptu!
-                                   # zapravo, sve ovo treba biti u funkciji! Ne smije biti otprije definirano
-                                   # rm(sve)
-
-ajmo= function(dir){
-  fajlovi= list.files(path= dir, full.names = T) # dobivamo popis fajlova
-  total= sum(file.size(fajlovi)) # veličina svih fajlova zajedno
-  return(total)
-} # funkcionira; nije zapravo bilo teško; nemoj biti pekmezica; ovo je samo kod funkcije; treba još napisati kak na Command Promptu
-args= commandArgs(trailingOnly = T)
-
-
-###### Exercise 9.44
-myPkgs <- c("MASS", "Matrix", "KernSmooth", "class", "cluster", "codetools")
-pdb <- available.packages(repos = findCRANmirror("web"))
-dep1= tools::package_dependencies(myPkgs, db= pdb,
-                                  which= "most",
-                                  recursive= T,
-                                  reverse= T) # previše; ovdje nisu svi argumenti na defaultu
-dep1= tools::package_dependencies(myPkgs, db= pdb) # svi argumenti su na default
-dep1 # ovo je samo primjer; sad zadatak/vježba
-
-moduli= c("MASS", "purrr")
-moj.depend= function(x, reverse= T){
-  dostupni= utils::available.packages()
-  if(reverse)
-    zavisni= names(dostupni$Depends[dostupni$Depends %in% x])
-  else
-    zavisni= names(dostupni$Depends[x %in% dostupni$Depends])
-  return(zavisni)
-} # kolko je ovo jednostavno, a ti to nemreš riješiti bez GPTija
+  
+  ###### Exercise 9.42
+  
+  # znači: lista; duljina= x-k+1, y[[i]]= f(x[i:(i+k-1)], ...)
+  # length(y)= length(x)-k+1
+  
+  slide= function(f, x, k, ...){
+    if(k > length(x))
+      stop()
+    y= vector("list", length(x)-k+1) # nisam znal da se ovak može inicijalizirati vektor
+    for (i in seq_along(y)){
+      y[[i]]= f(x[i:(i + k -1)], ...)
+    }
+    return(y)
+  } # ponovno, bez GPTija nisi uspel riješiti zadatak
+  
+  parovi= function(x){
+    brojac= 0
+    slide(function(vec){
+      if(vec[1]< vec[2])
+        brojac= brojac + 1
+    }, x, 2)
+    return(brojac)
+  } # Ne znam ovo riješiti.
+  
+  ###### Exercise 9.43
+  dir= "C:\\Users\\sgasparovic\\Desktop\\Dominik_knjižnica" # zapravo, treba mi samo character vector
+  dir= as.character() # ovaj je ispravan zato kaj nećemo da je jedan direktorij po defaultu
+  fajlovi= list.files(path= dir)
+  velicina= file.size(fajlovi)
+  total= sum(velicina)
+  args= commandArgs(trailingOnly= T) # ovo znači da se program može izvesti
+  # na Windows Command Promptu!
+  # zapravo, sve ovo treba biti u funkciji! Ne smije biti otprije definirano
+  # rm(sve)
+  
+  ajmo= function(dir){
+    fajlovi= list.files(path= dir, full.names = T) # dobivamo popis fajlova
+    total= sum(file.size(fajlovi)) # veličina svih fajlova zajedno
+    return(total)
+  } # funkcionira; nije zapravo bilo teško; nemoj biti pekmezica; ovo je samo kod funkcije; treba još napisati kak na Command Promptu
+  args= commandArgs(trailingOnly = T)
+  
+  
+  ###### Exercise 9.44
+  myPkgs <- c("MASS", "Matrix", "KernSmooth", "class", "cluster", "codetools")
+  pdb <- available.packages(repos = findCRANmirror("web"))
+  dep1= tools::package_dependencies(myPkgs, db= pdb,
+                                    which= "most",
+                                    recursive= T,
+                                    reverse= T) # previše; ovdje nisu svi argumenti na defaultu
+  dep1= tools::package_dependencies(myPkgs, db= pdb) # svi argumenti su na default
+  dep1 # ovo je samo primjer; sad zadatak/vježba
+  
+  moduli= c("MASS", "purrr")
+  moj.depend= function(x, reverse= T){
+    dostupni= utils::available.packages()
+    if(reverse)
+      zavisni= names(dostupni$Depends[dostupni$Depends %in% x])
+    else
+      zavisni= names(dostupni$Depends[x %in% dostupni$Depends])
+    return(zavisni)
+  } # kolko je ovo jednostavno, a ti to nemreš riješiti bez GPTija
   # $ operator is invalid for atomic vectors
+  
+  
+  w.predicted= numeric()
+  z= runif(50, 10, 100)
+  w= runif(50, 1, 10)
+  
+  model1= for (i in w){
+    w.predicted= lm(w~z)
+    return(w.predicted$fitted.values)
+  } # prva regresija uz pomoć for()
+  
+  # S3
+  
+  #typeof()- ispisuje nam unutarnju strukturu objekta
+  
+  xt= structure(123, class= "POSIXct")
+  xd= structure(123, class= "Date")
+  c(typeof(xt), typeof(xd)) # ista unutarnja struktura
+  print(xt) # 1970-01-01 01:02:03 CET
+  print(xd) # 1970-05-04; makar imaju istu unutarnju strukturu, različit je ispis
+  
+  x= iris[1:3, 1:2]
+  attr(x, "class") # data.frame
+  typeof(x) # list
+  `attr<-`(x, "class", NULL) # ovo je zapravo unclass()
+  class(x)= "Date" # jednako kao i attr(x, "class")= "Date"
+  
+  class(NULL) # NULL
+  class(c(T, F, NA)) # logical
+  class(c(1,2,3, NA_real_)) # numeric
+  class(list(list(1,2,3), LETTERS)) # list
+  class(function(x) x) # function
+  
+  #### Generics and method dispatching
+  ##### Generics, default and custom methods
+  print(print) # dobili smo kod funkcije print
+  # sve funkcije poput ovoga zovu se generičkima
+  
+  x= structure(
+    c(1,2,3,4,5),
+    levels= c("a", "b", "c"),
+    class= "categorical"
+  )
+  print(x)
+  print.default(x)
+  ### Nastaviti na str. 191!
+  
+  
+  # znači, sam možeš napisati svoju funkciju; npr. možeš napisati funkciju koja bude vratila 
+  # neki objekt kao as.categorical(); ovo je zapravo inačica as.categorical()
+  
+  as.categorical.default= function(x, ...){
+    if(!is.character(x))
+      x= as.character(x)
+    xu= unique(sort(x)) # ovo miče NA
+    structure(match(x, xu),
+              class= "categorical",
+              levels= xu
+              )
+  }
+  
+  as.categorical.default(c(1,2,3,5,6)) # dobro je, radi
+  
+  as.categorical.logical= function(x, ...){
+    if(!is.logical(x))
+      x= as.logical(x)
+    structure(
+      x+1, # generirane će biti jedino jedinica, dvojka i NA
+      class= "categorical",
+      levels= c("TRUE", "FALSE")
+    )
+  }
+  as.categorical.logical(c(0,1,1,1,0, NA)) # 0 postaje 1, 1 postaje 2, NA ostaje NA
+  as.categorical.logical(c(T, F, F, T, F, NA)) # isto je ko i u gornjem slučaju
+  
+  unique(rep(c(12,2,5,4,2,1,6)), 2)
+  unclass(c(1,2,45,5))
+  
+  iris_kmeans= kmeans(iris[, c("Petal.Length", "Sepal.Length")], centers= 3)
+  plot(data= iris, x= iris$Sepal.Width, y= iris$Petal.Width, colour= as.factor(iris_kmeans$cluster))
+  install.packages("ggplot2")
+  library(ggplot2)
+  ggplot(data= iris, aes(x= Sepal.Length, y= Petal.Length, color= iris_kmeans$cluster) + 
+    geom_point(size= 4))
 
-
-w.predicted= numeric()
-z= runif(50, 10, 100)
-w= runif(50, 1, 10)
-
-model1= for (i in w){
-  w.predicted= lm(w~z)
-  return(w.predicted$fitted.values)
-} # prva regresija uz pomoć for()
-
-# S3
-
-#typeof()- ispisuje nam unutarnju strukturu objekta
-
-xt= structure(123, class= "POSIXct")
-xd= structure(123, class= "Date")
-c(typeof(xt), typeof(xd)) # ista unutarnja struktura
-print(xt) # 1970-01-01 01:02:03 CET
-print(xd) # 1970-05-04; makar imaju istu unutarnju strukturu, različit je ispis
-
-x= iris[1:3, 1:2]
-attr(x, "class") # data.frame
-typeof(x) # list
-`attr<-`(x, "class", NULL) # ovo je zapravo unclass()
-class(x)= "Date" # jednako kao i attr(x, "class")= "Date"
-
-class(NULL) # NULL
-class(c(T, F, NA)) # logical
-class(c(1,2,3, NA_real_)) # numeric
-class(list(list(1,2,3), LETTERS)) # list
-class(function(x) x) # function
-
-#### Generics and method dispatching
-##### Generics, default and custom methods
-print(print) # dobili smo kod funkcije print
-             # sve funkcije poput ovoga zovu se generičkima
-
-x= structure(
-  c(1,2,3,4,5),
-  levels= c("a", "b", "c"),
-  class= "categorical"
-)
-print(x)
-print.default(x)
-### Nastaviti na str. 191!
-
-
-
-
-
-
-
-
-
-
-
+  
+  
+  
+  
+  
+  
